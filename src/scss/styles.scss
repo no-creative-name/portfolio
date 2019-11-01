@@ -27,6 +27,33 @@ main {
     padding: 100vh 0 0 0;
 }
 
+#webDev {
+    width: 50%;
+    min-height: 66px;
+    margin-top: 20px;
+    padding: 10px;
+    font-family: 'Courier';
+    font-size: 0px;
+    color: greenyellow;
+    background-color: darkslategray;
+    border-radius: 5px;
+    box-sizing: border-box;
+    word-break: break-word
+    ;
+    > * {
+        font-size: 40px;
+    }
+
+    @media only screen and (min-width: $bp-tablet) {
+        width: 40%;
+        min-height: 100px;
+
+        * {
+            font-size: 70px;
+        }
+    } 
+}
+
 .fontContainer {
     width: 50%;
     color: white;
@@ -40,7 +67,7 @@ main {
     }
 
     & + & {
-        margin-top: 40px;
+        margin-top: 50vh;
     }
 
     @media only screen and (min-width: $bp-tablet) {
@@ -50,7 +77,7 @@ main {
 
 .skillContainer {
     height: 100vh;
-    padding-top: 50vh;
+    margin-top: 50vh;
 }
 
 .skills {
@@ -64,8 +91,9 @@ main {
         align-items: center;
         padding: 10px;
         border-radius: 10px;
-        margin-bottom: 5px;
-        background-color: darkred;
+        margin-bottom: 15px;
+        background-color: darkslategray;
+        transition: transform 0.2s ease-in-out;
 
         .percentage {
             position: absolute;
@@ -74,7 +102,7 @@ main {
             height: 100%;
             width: 0%;
             border-radius: 10px;
-            background-color: red;
+            background-color: greenyellow;
         }
 
         > span {

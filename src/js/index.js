@@ -1,5 +1,6 @@
 import '../scss/styles.scss';
 import { TweenMax } from 'gsap';
+import Typed from 'typed.js';
 
 const fitty = require('fitty').default;
 
@@ -30,7 +31,7 @@ const initFitty = () => {
 
 const setupIntroAnimation = () => {
 	const inTween = new TimelineMax()
-		.from(".introContainer", 1.5, {rotationY: 90, scale: 0.8, opacity: 0});
+		.from(".introContainer", 1.5, {scale: 0.5});
 
 	new ScrollMagic.Scene({
 		triggerElement: "#fc1",
@@ -54,10 +55,26 @@ const setupIntroAnimation = () => {
 		.addTo(controller);
 }
 
+const setupWebDevAnimation = () => {
+	const webDevTween = new TimelineMax().add(() => {
+		new Typed('#webDev #content', {
+			strings: ["/web/dev"],
+			typeSpeed: 50
+		});
+  
+	})
+
+	new ScrollMagic.Scene({
+		triggerElement: "#webDev",
+		triggerHook: "onCenter",
+		duration: 0,
+	})
+		.setTween(webDevTween)
+		.addTo(controller);
+}
+
 const setupSkillAnimation = () => {
 	const skillBubbles = [].slice.call(document.querySelectorAll('.skills__skillBubble'));
-	const colorFilled = 'red';
-	const colorEmpty = 'darkred';
 
 	const bubbleTween = new TweenMax
 		.staggerFromTo(
@@ -70,7 +87,7 @@ const setupSkillAnimation = () => {
 	new ScrollMagic.Scene({
 		triggerElement: ".skills",
 		triggerHook: "onEnter",
-		duration: "30%",
+		duration: "40%",
 		offset: 200
 	})
 		.setTween(bubbleTween)
@@ -102,4 +119,5 @@ const setupSkillAnimation = () => {
 considerMobileMenuBar();
 initFitty();
 setupIntroAnimation();
+setupWebDevAnimation();
 setupSkillAnimation();
