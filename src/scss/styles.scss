@@ -1,0 +1,32 @@
+$bp-mobile-big: 600px;
+$bp-tablet: 800px;
+$bp-desktop: 1000px;
+
+body {
+    margin: 0;
+    font-family: 'Bebas Kai';
+}
+
+main {
+    background-image: linear-gradient(to top, darkgrey 0%, black 100%);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    padding: 100vh 0;
+}
+
+.fontContainer {
+    width: 30%;
+    color: white;
+
+    .fit {
+        display: inline-block;
+        white-space: nowrap;
+        line-height: 0.8em;
+    }
+
+    & + & {
+        margin-top: 40px;
+    }
+}
