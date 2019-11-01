@@ -2,23 +2,36 @@ $bp-mobile-big: 600px;
 $bp-tablet: 800px;
 $bp-desktop: 1000px;
 
+$bg-color-1: #5e5e5e;
+$bg-color-2: #858585;
+
+html {
+    overflow-x: hidden;
+}
+
 body {
     margin: 0;
     font-family: 'Bebas Kai';
 }
 
 main {
-    background-image: linear-gradient(to top, darkgrey 0%, black 100%);
+    background-image: radial-gradient($bg-color-1 15%, transparent 16%),
+    radial-gradient($bg-color-1 15%, transparent 16%);
+    background-size: 60px 60px;
+    background-position: 0 0, 30px 30px;
+    background-color: $bg-color-2;
     display: flex;
     justify-content: center;
     align-items: center;
     flex-direction: column;
-    padding: 100vh 0;
+    padding: 100vh 0 0 0;
 }
 
 .fontContainer {
-    width: 30%;
+    width: 50%;
     color: white;
+    user-select: none;
+    text-transform: uppercase;
 
     .fit {
         display: inline-block;
@@ -28,5 +41,46 @@ main {
 
     & + & {
         margin-top: 40px;
+    }
+
+    @media only screen and (min-width: $bp-tablet) {
+        width: 40%;
+    } 
+}
+
+.skillContainer {
+    height: 100vh;
+    padding-top: 50vh;
+}
+
+.skills {
+    width: 100%;
+    margin-top: 10vh;
+
+    &__skillBubble {
+        position: relative;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        padding: 10px;
+        border-radius: 10px;
+        margin-bottom: 5px;
+        background-color: darkred;
+
+        .percentage {
+            position: absolute;
+            top: 0;
+            left: 0;
+            height: 100%;
+            width: 0%;
+            border-radius: 10px;
+            background-color: red;
+        }
+
+        > span {
+            font-size: 35px;
+            height: 40px;
+            z-index: 50;
+        }
     }
 }
