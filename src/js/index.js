@@ -31,8 +31,11 @@ const initFitty = () => {
 
 const setupIntroAnimation = () => {
 	const inTween = new TimelineMax()
-		.from(".introContainer", 1.5, {scale: 0.5});
+		.from(".introContainer", 1.5, {opacity: 0});
 
+	const bgTween = new TimelineMax()
+		.to("main", 1.0, {backgroundColor: "#163740"});
+		
 	new ScrollMagic.Scene({
 		triggerElement: "#fc1",
 		triggerHook: "onEnter",
@@ -41,17 +44,12 @@ const setupIntroAnimation = () => {
 		.setTween(inTween)
 		.addTo(controller);
 
-
-	const outTween = new TimelineMax()
-		.to(".introContainer", 1.5, {rotationY: 90, scale: 0.8, opacity: 0});
-
 	new ScrollMagic.Scene({
-		triggerElement: "#fc2",
-		triggerHook: "onLeave",
-		duration: "50%",
-		offset: 500
+		triggerElement: "#fc1",
+		triggerHook: "onEnter",
+		offset: 50
 	})
-		.setTween(outTween)
+		.setTween(bgTween)
 		.addTo(controller);
 }
 
@@ -61,8 +59,9 @@ const setupWebDevAnimation = () => {
 			strings: ["/web/dev"],
 			typeSpeed: 50
 		});
-  
-	})
+	});
+	const bgTween = new TimelineMax()
+		.to("main", 1.0, {backgroundColor: "#235867"});
 
 	new ScrollMagic.Scene({
 		triggerElement: "#webDev",
@@ -70,6 +69,13 @@ const setupWebDevAnimation = () => {
 		duration: 0,
 	})
 		.setTween(webDevTween)
+		.addTo(controller);
+
+	new ScrollMagic.Scene({
+		triggerElement: "#webDev",
+		triggerHook: "onEnter",
+	})
+		.setTween(bgTween)
 		.addTo(controller);
 }
 
@@ -88,7 +94,7 @@ const setupSkillAnimation = () => {
 		triggerElement: ".skills",
 		triggerHook: "onEnter",
 		duration: "40%",
-		offset: 200
+		offset: 100
 	})
 		.setTween(bubbleTween)
 		.addTo(controller);
@@ -114,6 +120,40 @@ const setupSkillAnimation = () => {
 		.setTween(percentageTimeline)
 		.addTo(controller);
 	
+	const bgTween = new TimelineMax()
+		.to("main", 1.0, {backgroundColor: "#2F798E"});
+		
+	new ScrollMagic.Scene({
+		triggerElement: ".skills",
+		triggerHook: "onEnter",
+	})
+		.setTween(bgTween)
+		.addTo(controller);
+}
+
+const setupContactAnimation = () => {
+	const inTween = new TimelineMax()
+		.to("#touch", 0.8, {x: "+=20", yoyo: true, repeat: 2})
+		.to("#touch", 0.8, {x: "-=20", yoyo: true, repeat: 2})
+		.to("#touch", 0.8, {x: 0});
+
+	new ScrollMagic.Scene({
+		triggerElement: "#fc4",
+		triggerHook: "onEnter",
+		duration: "60%",
+	})
+		.setTween(inTween)
+		.addTo(controller);
+
+	const bgTween = new TimelineMax()
+		.to("main", 1.0, {backgroundColor: "#3A9AB6"});
+
+	new ScrollMagic.Scene({
+		triggerElement: "#fc4",
+		triggerHook: "onEnter",
+	})
+		.setTween(bgTween)
+		.addTo(controller);
 }
 
 considerMobileMenuBar();
@@ -121,3 +161,4 @@ initFitty();
 setupIntroAnimation();
 setupWebDevAnimation();
 setupSkillAnimation();
+setupContactAnimation();

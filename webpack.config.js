@@ -30,14 +30,18 @@ module.exports = {
         test: /\.js$/,
         loader: "imports-loader?define=>false"
       },
+      {
+         test: /\.(html)$/,
+         use: ['html-loader']
+      }
     ]
   },
   plugins: [
-        new HtmlWebpackPlugin({
-            filename: 'index.html',
-            title: 'index',
-            template: './src/html/index.html',
-            inject: true,
-        }),
-    ]
+    new HtmlWebpackPlugin({
+        filename: 'index.html',
+        title: 'index',
+        template: './src/html/index.html',
+        inject: true,
+    }),
+  ]
 };
