@@ -36,6 +36,11 @@ const setupIntroAnimation = () => {
 	const bgTween = new TimelineMax()
 		.to("main", 1.0, {backgroundColor: "#163740"});
 		
+	const imageTween = new TimelineMax()
+		.from("#portrait", 1.0, {x: -1000})
+		.to("#portrait", 1.0, {x: 0})
+	;
+	
 	new ScrollMagic.Scene({
 		triggerElement: "#fc1",
 		triggerHook: "onEnter",
@@ -50,6 +55,14 @@ const setupIntroAnimation = () => {
 		offset: 50
 	})
 		.setTween(bgTween)
+		.addTo(controller);
+
+	new ScrollMagic.Scene({
+		triggerElement: "#portrait",
+		triggerHook: "onEnter",
+		duration: "100%",
+	})
+		.setTween(imageTween)
 		.addTo(controller);
 }
 
@@ -141,6 +154,7 @@ const setupContactAnimation = () => {
 		triggerElement: "#fc4",
 		triggerHook: "onEnter",
 		duration: "60%",
+		offset: 100
 	})
 		.setTween(inTween)
 		.addTo(controller);
