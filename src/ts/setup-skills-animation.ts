@@ -11,8 +11,8 @@ export const setupSkillsAnimation = (controller: any) => {
 		.staggerFromTo(
 			".skills__skillBubble",
 			1,
-			{ left: "200%" },
-			{ left: 0, ease: Back.easeInOut },
+			{ left: "200%", ease: Back.easeInOut },
+			{ left: 0, ease: Back.easeOut },
 			0.15
 		);
 	new ScrollMagic.Scene({

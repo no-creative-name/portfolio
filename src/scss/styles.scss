@@ -8,9 +8,6 @@ $bp-desktop: 1000px;
 $bg-color-1: #5e5e5e;
 $bg-color-2: #09171A;
 
-$accent-color-1: greenyellow;
-$accent-color-2: darkslategray;
-
 $accent-1: #09171A;
 $accent-2: #163740;
 $accent-3: #235867;
@@ -24,6 +21,7 @@ html {
 body {
     margin: 0;
     font-family: 'Bebas Neue';
+    overflow-x: hidden;
 }
 
 main {
@@ -35,24 +33,39 @@ main {
 }
 
 h1 {
-    font-size: 10rem;
-    line-height: 9rem;
+    font-size: 8rem;
+    line-height: 7rem;
     margin: 0;
     text-align: center;
+
+    @media only screen and (min-width: $bp-tablet) {
+        font-size: 10rem;
+        line-height: 9rem;
+    } 
 }
 
 h2 {
-    font-size: 6rem;
-    line-height: 6rem;
+    font-size: 5rem;
+    line-height: 5rem;
     margin: 0;
     text-align: center;
+
+    @media only screen and (min-width: $bp-tablet) {
+        font-size: 6rem;
+        line-height: 6rem;
+    } 
 }
 
 h3 {
-    font-size: 4rem;
-    line-height: 4rem;
+    font-size: 3rem;
+    line-height: 3rem;
     margin: 0;
     text-align: center;
+
+    @media only screen and (min-width: $bp-tablet) {
+        font-size: 4rem;
+        line-height: 4rem;
+    } 
 }
 
 h3 {
@@ -75,8 +88,6 @@ h3 {
     object-fit: cover;
     width: 100%;
     min-height: 100vh;
-    //border-radius: 50%;
-    //animation: 1s ease portraitRotate;
     transition: transform 0.2s ease;
 }
 
@@ -86,7 +97,7 @@ h3 {
 
 .container {
     width: 75%;
-    height: 100vh;
+    min-height: 110vh;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -97,35 +108,44 @@ h3 {
 
 }
 
-#webDev {
+.codeBox {
+    display: flex;
+    align-items: center;
     min-height: 66px;
     margin: 20px 0;
     padding: 10px;
     font-family: 'Courier';
-    font-size: 0px;
     color: $accent-5;
     background-color: $accent-2;
     border-radius: 5px;
     box-sizing: border-box;
     word-break: break-word;
     text-transform: none;
-
-    > * {
-        font-size: 40px;
-    }
+    min-width: 70%;
+    font-size: 40px;
 
     @media only screen and (min-width: $bp-tablet) {
-        min-height: 100px;
-
-        * {
-            font-size: 70px;
-        }
+        min-width: 40%;
+        font-size: 70px;
     } 
+
+    &__caret {
+        display: inline-block;
+        height: 80%;
+        width: 5px;
+        background-color: $accent-5;
+        margin-left: 8px;
+        animation: 0.5s linear 0s infinite alternate blink;
+    }
 }
 
 .skills {
-    width: 70%;
+    width: 100%;
     margin-top: 10vh;
+
+    @media only screen and (min-width: $bp-tablet) {
+        width: 70%;
+    } 
 
     &__skillBubble {
         position: relative;
@@ -166,8 +186,12 @@ h3 {
     align-items: center;
     margin-top: 40px;
 
-    > *:not(:last-child) {
-        margin-right: 50px;
+    > * {
+        max-width: 200px;
+
+        &:not(:last-child) {
+            margin-right: 50px;
+        }
     }
 
     #github {
@@ -232,15 +256,6 @@ h3 {
         border-width: 0 4px 4px 0;
         padding: 4px;
         animation-delay: 0.4s;
-    }
-}
-
-@keyframes portraitRotate {
-    0% {
-        transform: rotate(0deg) scale(0);
-    }
-    100% {
-        transform: rotate(360deg) scale(1);
     }
 }
 

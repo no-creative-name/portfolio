@@ -1,29 +1,28 @@
 import { TimelineMax } from 'gsap';
-import Typed from 'typed.js';
 
 const ScrollMagic = require('scrollmagic');
 require("scrollmagic/scrollmagic/uncompressed/plugins/animation.gsap");
 
+const completeString = '/web/dev';
+
 export const setupWebDevAnimation = (controller: any) => {
-  const webDevTween = new TimelineMax().add(() => {
-    new Typed('#webDev #content', {
-      strings: ["/web/dev"],
-      typeSpeed: 50
-    });
-  });
+  const codeBox = document.querySelector('.codeBox__content');
   const bgTween = new TimelineMax()
     .to("main", 1.0, { backgroundColor: "#235867" });
 
   new ScrollMagic.Scene({
-    triggerElement: "#webDev",
-    triggerHook: "onCenter",
-    duration: 0,
+    triggerElement: ".codeBox",
+    triggerHook: "onEnter",
+    duration: 400,
   })
-    .setTween(webDevTween)
+    .on('progress', (e: any) => {
+      const numOfChars = completeString.split('').length;
+      codeBox.innerHTML = completeString.slice(0, Math.floor(numOfChars * e.progress));
+    })
     .addTo(controller);
 
   new ScrollMagic.Scene({
-    triggerElement: "#webDev",
+    triggerElement: ".codeBox",
     triggerHook: "onEnter",
     duration: "100%"
   })

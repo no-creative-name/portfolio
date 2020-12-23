@@ -13,7 +13,7 @@ export const setupContactAnimation = (controller: any) => {
 		triggerElement: "#contactLinksContainer",
 		triggerHook: "onEnter",
 		duration: "40%",
-		offset: 100
+		offset: -100
 	})
 		.setTween(inTween)
 		.addTo(controller);
