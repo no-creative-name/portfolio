@@ -1,8 +1,6 @@
 import '../scss/styles.scss';
-import { TweenMax } from 'gsap';
+import { Back, TimelineMax, TweenMax } from 'gsap';
 import Typed from 'typed.js';
-
-const fitty = require('fitty').default;
 
 const ScrollMagic = require('scrollmagic');
 require("scrollmagic/scrollmagic/uncompressed/plugins/animation.gsap");
@@ -20,13 +18,6 @@ const considerMobileMenuBar = () => {
 		let vh = window.innerHeight * 0.01;
 		document.documentElement.style.setProperty('--vh', `${vh}px`);
 	});
-}
-
-const initFitty = () => {
-	const fontContainers = [].slice.call(document.querySelectorAll('.fontContainer'));
-	fontContainers.map(fontContainer => 
-		[].slice.call(fontContainer.children).map(fontDiv => fitty(fontDiv))
-	);
 }
 
 const setupIntroAnimation = () => {
@@ -52,7 +43,7 @@ const setupIntroAnimation = () => {
 		.setTween(bgTween)
 		.addTo(controller);
 
-	const video = document.querySelector('#video');
+	const video = (document.querySelector('#video') as HTMLImageElement);
 
 	const videoScene = new ScrollMagic.Scene({
 		triggerElement: "#video",
@@ -61,16 +52,14 @@ const setupIntroAnimation = () => {
 	})
 	.addTo(controller);
 
-	const makeNumberStringComplete = (number) => {
+	const makeNumberStringComplete = (number: string) => {
 		if(number.length === 3) return number;
 		if(number.length === 2) return `0${number}`;
 		if(number.length === 1) return `00${number}`;
 	}
 
-	videoScene.on('progress', (e) => {
-		console.log(e.progress);
+	videoScene.on('progress', (e: {progress: number}) => {
 		const roundedProgress = Math.floor(e.progress * 150);
-		console.log(roundedProgress);
 		video.src = `src/vid/walking-in-${e.progress > 0 ? makeNumberStringComplete((roundedProgress).toString()) : '001'}.png`
 	})
 }
@@ -104,18 +93,18 @@ const setupWebDevAnimation = () => {
 const setupSkillAnimation = () => {
 	const skillBubbles = [].slice.call(document.querySelectorAll('.skills__skillBubble'));
 
-	const bubbleTween = new TweenMax
+	const bubbleTween = TweenMax
 		.staggerFromTo(
 			".skills__skillBubble",
 			1,
 			{left: "200%"},
-			{left: 0, ease: Back.EaseInOut},
+			{left: 0, ease: Back.easeInOut},
 			0.15
 		);
 	new ScrollMagic.Scene({
 		triggerElement: ".skills",
 		triggerHook: "onEnter",
-		duration: "40%",
+		duration: "50%",
 		offset: 100
 	})
 		.setTween(bubbleTween)
@@ -124,7 +113,7 @@ const setupSkillAnimation = () => {
 
 	const percentageTimeline = new TimelineMax();
 
-	skillBubbles.map(bubble => {
+	skillBubbles.map((bubble: HTMLElement) => {
 		const percentage = bubble.getAttribute('data-percentage');
 		const selector = `#${bubble.id} > .percentage`;
 		
@@ -180,7 +169,6 @@ const setupContactAnimation = () => {
 }
 
 considerMobileMenuBar();
-initFitty();
 setupIntroAnimation();
 setupWebDevAnimation();
 setupSkillAnimation();
