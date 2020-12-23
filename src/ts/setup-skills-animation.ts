@@ -7,23 +7,6 @@ require("scrollmagic/scrollmagic/uncompressed/plugins/animation.gsap");
 export const setupSkillsAnimation = (controller: any) => {
 	const skillBubbles = [].slice.call(document.querySelectorAll('.skills__skillBubble'));
 
-	const bubbleTween = TweenMax
-		.staggerFromTo(
-			".skills__skillBubble",
-			1,
-			{ left: "200%", ease: Back.easeInOut },
-			{ left: 0, ease: Back.easeOut },
-			0.15
-		);
-	new ScrollMagic.Scene({
-		triggerElement: ".skills",
-		triggerHook: "onEnter",
-		duration: "50%",
-	})
-		.setTween(bubbleTween)
-		.addTo(controller);
-
-
 	const percentageTimeline = new TimelineMax();
 
 	skillBubbles.map((bubble: HTMLElement) => {
