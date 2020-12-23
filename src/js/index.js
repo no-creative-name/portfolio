@@ -35,14 +35,9 @@ const setupIntroAnimation = () => {
 
 	const bgTween = new TimelineMax()
 		.to("main", 1.0, {backgroundColor: "#163740"});
-		
-	const imageTween = new TimelineMax()
-		.from("#portrait", 1.0, {x: -1000})
-		.to("#portrait", 1.0, {x: 0})
-	;
 	
 	new ScrollMagic.Scene({
-		triggerElement: "#fc1",
+		triggerElement: "#c1",
 		triggerHook: "onEnter",
 		duration: "50%",
 	})
@@ -50,20 +45,34 @@ const setupIntroAnimation = () => {
 		.addTo(controller);
 
 	new ScrollMagic.Scene({
-		triggerElement: "#fc1",
+		triggerElement: "#c1",
 		triggerHook: "onEnter",
 		offset: 50
 	})
 		.setTween(bgTween)
 		.addTo(controller);
 
-	new ScrollMagic.Scene({
-		triggerElement: "#portrait",
+	const video = document.querySelector('#video');
+
+	const videoScene = new ScrollMagic.Scene({
+		triggerElement: "#video",
 		triggerHook: "onEnter",
-		duration: "100%",
+		duration: "200%",
 	})
-		.setTween(imageTween)
-		.addTo(controller);
+	.addTo(controller);
+
+	const makeNumberStringComplete = (number) => {
+		if(number.length === 3) return number;
+		if(number.length === 2) return `0${number}`;
+		if(number.length === 1) return `00${number}`;
+	}
+
+	videoScene.on('progress', (e) => {
+		console.log(e.progress);
+		const roundedProgress = Math.floor(e.progress * 150);
+		console.log(roundedProgress);
+		video.src = `src/vid/walking-in-${e.progress > 0 ? makeNumberStringComplete((roundedProgress).toString()) : '001'}.png`
+	})
 }
 
 const setupWebDevAnimation = () => {
@@ -151,9 +160,9 @@ const setupContactAnimation = () => {
 		.to("#touch", 0.8, {x: 0});
 
 	new ScrollMagic.Scene({
-		triggerElement: "#fc4",
+		triggerElement: "#c4",
 		triggerHook: "onEnter",
-		duration: "60%",
+		duration: "40%",
 		offset: 100
 	})
 		.setTween(inTween)
@@ -163,7 +172,7 @@ const setupContactAnimation = () => {
 		.to("main", 1.0, {backgroundColor: "#3A9AB6"});
 
 	new ScrollMagic.Scene({
-		triggerElement: "#fc4",
+		triggerElement: "#c4",
 		triggerHook: "onEnter",
 	})
 		.setTween(bgTween)

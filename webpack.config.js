@@ -25,23 +25,36 @@ module.exports = {
           'sass-loader',
         ],
       },
-      { test: [/\.jpg$/, /\.svg$/], use: 'file-loader' },
+      {
+        test: [/\.jpg$/, /\.png$/, /\.svg$/, /\.mp4$/],
+        use: {
+          loader: "file-loader",
+          options: {
+            name: "[name].[hash].[ext]"
+          }
+        }
+      },
       {
         test: /\.js$/,
         loader: "imports-loader?define=>false"
       },
       {
-         test: /\.(html)$/,
-         use: ['html-loader']
+        test: /\.(html)$/,
+        use: {
+          loader: 'html-loader',
+          options: {
+            attrs: [":src"]
+          }
+        }
       }
     ]
   },
   plugins: [
     new HtmlWebpackPlugin({
-        filename: 'index.html',
-        title: 'index',
-        template: './src/html/index.html',
-        inject: true,
+      filename: 'index.html',
+      title: 'index',
+      template: './src/html/index.html',
+      inject: true,
     }),
   ]
 };
