@@ -35,13 +35,13 @@ main {
 
 h1 {
     font-size: 7rem;
-    line-height: 6rem;
+    line-height: 7rem;
     margin: 0;
     text-align: center;
 
     @media only screen and (min-width: $bp-tablet) {
         font-size: 11rem;
-        line-height: 10rem;
+        line-height: 11rem;
     } 
 }
 
@@ -58,20 +58,8 @@ h2 {
 }
 
 h3 {
-    font-size: 3rem;
-    line-height: 3rem;
-    margin: 0;
-    text-align: center;
-
-    @media only screen and (min-width: $bp-tablet) {
-        font-size: 4rem;
-        line-height: 4rem;
-    } 
-}
-
-h3 {
     font-size: 2rem;
-    line-height: 4rem;
+    line-height: 2rem;
     margin: 0;
     text-align: center;
 }
@@ -294,6 +282,13 @@ h3 {
 
         &:hover {
             transform: translateY(-40px);
+
+            #spotify {
+                animation: none;
+                path {
+                    fill: #1ED760;
+                }
+            }
         }
     }
 
@@ -305,13 +300,6 @@ h3 {
         path {
             transition: fill 0.1s;
         }
-        
-        &:hover {
-            animation: none;
-            path {
-                fill: #1ED760;
-            }
-        } 
     }
 
     #spotify-hover {
@@ -323,6 +311,10 @@ h3 {
         &:hover {
             + a {
                 transform: translateY(-40px);
+
+                #spotify {
+                    animation: none;
+                }
             }
         }
     } 
