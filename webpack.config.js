@@ -8,6 +8,9 @@ module.exports = {
     filename: 'bundle.js'
   },
   resolve: {
+    extensions: [
+      '.ts', '.js'
+    ],
     alias: {
       "ScrollMagicGSAP": "scrollmagic/scrollmagic/uncompressed/plugins/animation.gsap"
     }
