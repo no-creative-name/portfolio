@@ -25,6 +25,7 @@ export const setupWebDevAnimation = (controller: any) => {
   new ScrollMagic.Scene({
     triggerElement: "#webDev",
     triggerHook: "onEnter",
+    duration: "100%"
   })
     .setTween(bgTween)
     .addTo(controller);

@@ -10,7 +10,7 @@ export const setupContactAnimation = (controller: any) => {
 		.to("#touch", 0.8, { x: 0 });
 
 	new ScrollMagic.Scene({
-		triggerElement: "#c4",
+		triggerElement: "#contactLinksContainer",
 		triggerHook: "onEnter",
 		duration: "40%",
 		offset: 100
@@ -22,8 +22,9 @@ export const setupContactAnimation = (controller: any) => {
 		.to("main", 1.0, { backgroundColor: "#3A9AB6" });
 
 	new ScrollMagic.Scene({
-		triggerElement: "#c4",
-		triggerHook: "onEnter",
+		triggerElement: "#contactLinksContainer",
+    triggerHook: "onEnter",
+    duration: "100%"
 	})
 		.setTween(bgTween)
 		.addTo(controller);

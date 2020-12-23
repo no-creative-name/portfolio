@@ -10,7 +10,7 @@ export const setupIntroAnimation = (controller: any) => {
     .to("main", 1.0, { backgroundColor: "#163740" });
 
   new ScrollMagic.Scene({
-    triggerElement: "#c1",
+    triggerElement: "#welcomeContainer",
     triggerHook: "onEnter",
     duration: "50%",
   })
@@ -18,9 +18,10 @@ export const setupIntroAnimation = (controller: any) => {
     .addTo(controller);
 
   new ScrollMagic.Scene({
-    triggerElement: "#c1",
+    triggerElement: "#welcomeContainer",
     triggerHook: "onEnter",
-    offset: 50
+    offset: 50,
+    duration: "100%"
   })
     .setTween(bgTween)
     .addTo(controller);

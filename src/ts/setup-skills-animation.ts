@@ -19,7 +19,6 @@ export const setupSkillsAnimation = (controller: any) => {
 		triggerElement: ".skills",
 		triggerHook: "onEnter",
 		duration: "50%",
-		offset: 100
 	})
 		.setTween(bubbleTween)
 		.addTo(controller);
@@ -51,6 +50,7 @@ export const setupSkillsAnimation = (controller: any) => {
 	new ScrollMagic.Scene({
 		triggerElement: ".skills",
 		triggerHook: "onEnter",
+    duration: "100%",
 	})
 		.setTween(bgTween)
 		.addTo(controller);
