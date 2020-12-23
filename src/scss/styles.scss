@@ -19,9 +19,10 @@ html {
 }
 
 body {
+    position: relative;
     margin: 0;
-    font-family: 'Bebas Neue';
-    overflow-x: hidden;
+    font-family: 'Bebas Neue', sans-serif;
+    overflow: hidden;
 }
 
 main {
@@ -33,20 +34,20 @@ main {
 }
 
 h1 {
-    font-size: 8rem;
-    line-height: 7rem;
+    font-size: 7rem;
+    line-height: 6rem;
     margin: 0;
     text-align: center;
 
     @media only screen and (min-width: $bp-tablet) {
-        font-size: 10rem;
-        line-height: 9rem;
+        font-size: 11rem;
+        line-height: 10rem;
     } 
 }
 
 h2 {
-    font-size: 5rem;
-    line-height: 5rem;
+    font-size: 4.5rem;
+    line-height: 4.5rem;
     margin: 0;
     text-align: center;
 
@@ -147,13 +148,47 @@ h3 {
         width: 70%;
     } 
 
+    &__legend {
+        display: flex;
+        justify-content: space-between;
+        width: 100%;
+
+        &Step {
+            margin-bottom: 30px;
+            position: relative;
+            white-space: nowrap;
+            
+            &Marker {
+                position: absolute;
+                content: '';
+                display: block;
+                width: 2px;
+                background: linear-gradient(180deg, rgba(255,255,255,1) 0%, rgba(255,255,255,1) 76%, rgba(255,255,255,0) 100%);
+            }
+
+            &:first-child .skills__legendStepMarker {
+                transform: translateX(-2px);
+            }
+
+            > span {
+                font-size: 1rem;
+                position: absolute;
+                bottom: 0;
+                transform: translateX(-50%);
+
+                @media only screen and (min-width: $bp-tablet) {
+                    font-size: 1.5rem;
+                } 
+            }
+        }
+    }
+
     &__skillBubble {
         position: relative;
         display: flex;
         justify-content: center;
         align-items: center;
         padding: 10px;
-        border-radius: 10px;
         margin-bottom: 15px;
         background-color: $accent-2;
         transition: transform 0.2s ease-in-out;
@@ -164,7 +199,6 @@ h3 {
             left: 0;
             height: 100%;
             width: 0%;
-            border-radius: 10px;
             background-color: $accent-3;
         }
 
@@ -233,30 +267,78 @@ h3 {
     width: 20%;
 }
 
-#scrollIcon {
-    margin-top: 50px;
-    width: 30px;
-    fill: white;
-    animation: 1s ease 0s infinite alternate blink;
+#touchContainer {
+    display: flex;
+}
+
+#touchL {
+    transform: translateX(22px);
+}
+
+#touchR {
+    transform: translateX(100vw);
+
+    &:hover {
+        animation: 1s 0s 1 hoverTouch;
+    }
+}
+
+.hiddenIcon {
+    position: absolute;
+    bottom: -30px;
+    left: 20%;
+
+    > a {
+        display: block;
+        transition: transform 0.2s;
+
+        &:hover {
+            transform: translateY(-40px);
+        }
+    }
+
+    #spotify {
+        width: 3rem;
+        height: 3rem;
+        animation: 2s ease-in-out 0s infinite wiggle;
+    
+        path {
+            transition: fill 0.1s;
+        }
+        
+        &:hover {
+            animation: none;
+            path {
+                fill: #1ED760;
+            }
+        } 
+    }
+
+    #spotify-hover {
+        position: absolute;
+        bottom: 0;
+        width: 100px;
+        height: 100px;
+        
+        &:hover {
+            + a {
+                transform: translateY(-40px);
+            }
+        }
+    } 
 }
 
 .arrow.down {
     opacity: 0.0;
     border: solid white;
     display: inline-block;
-    margin-top: 5px;
+    margin-top: 55px;
     transform: rotate(45deg);
     -webkit-transform: rotate(45deg);
-    border-width: 0 4px 4px 0;
-    padding: 6px;
+    border-width: 0 8px 8px 0;
+    padding: 10px;
     animation: 1s ease 0s infinite alternate blink;
     animation-delay: 0.2s;
-
-    &.small {
-        border-width: 0 4px 4px 0;
-        padding: 4px;
-        animation-delay: 0.4s;
-    }
 }
 
 @keyframes blink {
@@ -267,3 +349,46 @@ h3 {
         opacity: 1.0;
     }
 }
+
+@keyframes upAndDown {
+    0% {
+        transform: translateY(0);
+    }
+    30% {
+        transform: translateY(-40px);
+    }
+    60% {
+        transform: translateY(0);
+    }
+}
+
+@keyframes wiggle {
+    0% {
+        transform: rotate(0deg);
+    }
+    3% {
+        transform: rotate(-15deg);
+    }
+    9% {
+        transform: rotate(15deg);
+    }
+    15% {
+        transform: rotate(-15deg);
+    }
+    21% {
+        transform: rotate(15deg);
+    }
+    24% {
+        transform: rotate(0deg);
+    }
+}
+
+@keyframes hoverTouch {
+    0% {
+        color: inherit;
+    }
+    20% {
+        color: $accent-2;
+    }
+}
+

@@ -11,9 +11,6 @@ module.exports = {
     extensions: [
       '.ts', '.js'
     ],
-    alias: {
-      "ScrollMagicGSAP": "scrollmagic/scrollmagic/uncompressed/plugins/animation.gsap"
-    }
   },
   module: {
     rules: [
