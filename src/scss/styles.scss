@@ -6,9 +6,9 @@ $bp-tablet: 800px;
 $bp-desktop: 1000px;
 
 $bg-color-1: #5e5e5e;
-$bg-color-2: #09171A;
 
-$accent-1: #09171A;
+$accent-0: #09191c;
+$accent-1: #102c32;
 $accent-2: #163740;
 $accent-3: #235867;
 $accent-4: #2F798E;
@@ -26,7 +26,7 @@ body {
 }
 
 main {
-    background-color: $bg-color-2;
+    background-color: $accent-0;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -47,7 +47,7 @@ h1 {
 
 h2 {
     font-size: 4.5rem;
-    line-height: 4.5rem;
+    line-height: 3.8rem;
     margin: 0;
     text-align: center;
 
@@ -74,10 +74,28 @@ h3 {
 }
 
 #video {
-    object-fit: cover;
-    width: 100%;
-    min-height: 100vh;
-    transition: transform 0.2s ease;
+    &--mobile,
+    &--desktop {
+        object-fit: cover;
+        width: 100%;
+        min-height: 100vh;
+        transition: transform 0.2s ease;
+    }
+
+    &--desktop {
+        display: none;
+    }
+
+    @media only screen and (min-width: $bp-tablet) {
+        &--mobile {
+            display: none;
+        }
+    
+        &--desktop {
+            display: block;
+        }
+    } 
+
 }
 
 #webDevContainer {
@@ -92,7 +110,6 @@ h3 {
     align-items: center;
     flex-direction: column;
     color: white;
-    user-select: none;
     text-transform: uppercase;
 
 }
@@ -105,12 +122,12 @@ h3 {
     padding: 10px;
     font-family: 'Courier';
     color: $accent-5;
-    background-color: $accent-2;
+    background-color: $accent-1;
     border-radius: 5px;
     box-sizing: border-box;
     word-break: break-word;
     text-transform: none;
-    min-width: 70%;
+    min-width: 100%;
     font-size: 40px;
 
     @media only screen and (min-width: $bp-tablet) {
@@ -260,7 +277,7 @@ h3 {
 }
 
 #touchL {
-    transform: translateX(22px);
+    transform: translateX(12px);
 }
 
 #touchR {

@@ -7,7 +7,7 @@ export const setupIntroAnimation = (controller: any) => {
     .from("#introContainer", 1.5, { opacity: 0 });
 
   const bgTween = new TimelineMax()
-    .to("main", 1.0, { backgroundColor: "#163740" });
+    .to("main", 1.0, { backgroundColor: "#102c32" });
 
   new ScrollMagic.Scene({
     triggerElement: "#introContainer",

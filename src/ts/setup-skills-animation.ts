@@ -13,11 +13,11 @@ export const setupSkillsAnimation = (controller: any) => {
 	const percentageTimeline = new TimelineMax();
 	
 
-	skillLegendSteps.map((step: HTMLElement, index: number) => {
+	skillLegendSteps.map((step: HTMLElement) => {
 		const baseHeight = skills.clientHeight + skillLegendSteps.length * 30 - 100;
 		legendTimeline
 			.to(step, 1.5, {
-				height: `${baseHeight + index * 30}px`,
+				height: `${baseHeight}px`,
 			});
 	});
 

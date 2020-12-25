@@ -5,6 +5,7 @@ import { setupVideoAnimation } from './setup-video-animation';
 import { setupWebDevAnimation } from './setup-web-dev-animation';
 import { setupSkillsAnimation } from './setup-skills-animation';
 import { setupContactAnimation } from './setup-contact-animation';
+import { setupDescriptionAnimation } from './setup-description-animation';
 
 const ScrollMagic = require('scrollmagic');
 require("scrollmagic/scrollmagic/uncompressed/plugins/animation.gsap");
@@ -14,5 +15,6 @@ considerMobileMenuBar();
 setupIntroAnimation(controller);
 setupVideoAnimation(controller);
 setupWebDevAnimation(controller);
+setupDescriptionAnimation(controller);
 setupSkillsAnimation(controller);
 setupContactAnimation(controller);

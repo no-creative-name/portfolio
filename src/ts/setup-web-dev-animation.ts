@@ -8,7 +8,7 @@ const completeString = '/web/dev';
 export const setupWebDevAnimation = (controller: any) => {
   const codeBox = document.querySelector('.codeBox__content');
   const bgTween = new TimelineMax()
-    .to("main", 1.0, { backgroundColor: "#235867" });
+    .to("main", 1.0, { backgroundColor: "#163740" });
 
   new ScrollMagic.Scene({
     triggerElement: ".codeBox",
