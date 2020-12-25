@@ -6,12 +6,11 @@ require("scrollmagic/scrollmagic/uncompressed/plugins/animation.gsap");
 
 export const setupSkillsAnimation = (controller: any) => {
 	const skills = document.querySelector('.skills');
-	const skillBubbles = [].slice.call(document.querySelectorAll('.skills__skillBubble'));
-	const skillLegendSteps = [].slice.call(document.querySelectorAll('.skills__legendStepMarker'));
+	const skillBubbles = [].slice.call(document.querySelectorAll('.skills__bar'));
+	const skillLegendSteps = [].slice.call(document.querySelectorAll('.skills__legend-step-marker'));
 
 	const legendTimeline = new TimelineMax();
 	const percentageTimeline = new TimelineMax();
-	
 
 	skillLegendSteps.map((step: HTMLElement) => {
 		const baseHeight = skills.clientHeight + skillLegendSteps.length * 30 - 100;
@@ -29,10 +28,10 @@ export const setupSkillsAnimation = (controller: any) => {
 	})
 		.setTween(legendTimeline)
 		.addTo(controller);
-
+		
 	skillBubbles.map((bubble: HTMLElement) => {
 		const percentage = bubble.getAttribute('data-percentage');
-		const selector = `#${bubble.id} > .percentage`;
+		const selector = `#${bubble.id} > .skills__bar-percentage`;
 
 		percentageTimeline
 			.to(selector, 1.5, {

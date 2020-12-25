@@ -13,7 +13,7 @@ const controller = new ScrollMagic.Controller();
 
 considerMobileMenuBar();
 setupIntroAnimation(controller);
-setupVideoAnimation(controller);
+//setupVideoAnimation(controller);
 setupWebDevAnimation(controller);
 setupDescriptionAnimation(controller);
 setupSkillsAnimation(controller);

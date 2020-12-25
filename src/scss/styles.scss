@@ -1,82 +1,35 @@
-
+@import './variables.scss';
+@import './generic.scss';
 @import url('https://fonts.googleapis.com/css2?family=Bebas+Neue&display=swap');
 
-$bp-mobile-big: 600px;
-$bp-tablet: 800px;
-$bp-desktop: 1000px;
-
-$bg-color-1: #5e5e5e;
-
-$accent-0: #09191c;
-$accent-1: #102c32;
-$accent-2: #163740;
-$accent-3: #235867;
-$accent-4: #2F798E;
-$accent-5: #3A9AB6;
-
-html {
-    overflow-x: hidden;
-}
-
-body {
-    position: relative;
-    margin: 0;
-    font-family: 'Bebas Neue', sans-serif;
-    overflow: hidden;
-}
-
-main {
-    background-color: $accent-0;
+.container {
+    width: 75%;
+    min-height: 110vh;
     display: flex;
     justify-content: center;
     align-items: center;
     flex-direction: column;
+    color: white;
+    text-transform: uppercase;
+
+    &--full-height {
+        height: 100vh;
+    }
 }
 
-h1,
-.headline-1 {
-    font-size: 7rem;
-    font-weight: bold;
-    line-height: 7rem;
-    margin: 0;
-    text-align: center;
+#portrait-wrapper {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 40%;
 
-    @media only screen and (min-width: $bp-tablet) {
-        font-size: 11rem;
-        line-height: 11rem;
-    } 
-}
-
-h2,
-.headline-2 {
-    font-size: 4.5rem;
-    font-weight: bold;
-    line-height: 3.8rem;
-    margin: 0;
-    text-align: center;
-
-    @media only screen and (min-width: $bp-tablet) {
-        font-size: 6rem;
-        line-height: 6rem;
-    } 
-}
-
-h3,
-.headline-3 {
-    font-size: 2rem;
-    font-weight: bold;
-    line-height: 2rem;
-    margin: 0;
-    text-align: center;
-}
-
-#welcomeContainer {
-    flex-direction: column;
-    height: 100vh;
-}
-
-#introContainer {
-    height: 100vh;
+    #self-portrait {
+        width: 100%;
+        max-height: 80%;
+        background-size: cover;
+        border-radius: 50%;
+        border: 10px solid white;
+    }
 }
 
 #video {
@@ -104,23 +57,7 @@ h3,
 
 }
 
-#webDevContainer {
-    height: 100vh;
-}
-
-.container {
-    width: 75%;
-    min-height: 110vh;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    flex-direction: column;
-    color: white;
-    text-transform: uppercase;
-
-}
-
-.codeBox {
+.code-box {
     display: flex;
     align-items: center;
     min-height: 66px;
@@ -164,12 +101,12 @@ h3,
         justify-content: space-between;
         width: 100%;
 
-        &Step {
+        &-step {
             margin-bottom: 30px;
             position: relative;
             white-space: nowrap;
             
-            &Marker {
+            &-marker {
                 position: absolute;
                 content: '';
                 display: block;
@@ -194,7 +131,7 @@ h3,
         }
     }
 
-    &__skillBubble {
+    &__bar {
         position: relative;
         display: flex;
         justify-content: center;
@@ -204,7 +141,7 @@ h3,
         background-color: $accent-2;
         transition: transform 0.2s ease-in-out;
 
-        .percentage {
+        &-percentage {
             position: absolute;
             top: 0;
             left: 0;
@@ -224,7 +161,7 @@ h3,
     }
 }
 
-.contactLinks {
+#contact-links-container {
     display: flex;
     flex-direction: row;
     justify-content: center;
@@ -274,27 +211,23 @@ h3,
     }
 }
 
-.contactLink {
+.contact-link {
     width: 20%;
 }
 
-#touchContainer {
+#touch-container {
     display: flex;
-}
-
-#touchL {
-    transform: translateX(12px);
-}
-
-#touchR {
-    transform: translateX(100vw);
-
-    &:hover {
-        animation: 1s 0s 1 hoverTouch;
+    
+    #touch-l {
+        transform: translateX(12px);
+    }
+    
+    #touch-r {
+        transform: translateX(100vw);
     }
 }
 
-.hiddenIcon {
+.hidden-icon {
     position: absolute;
     bottom: -30px;
     left: 20%;
@@ -397,13 +330,3 @@ h3,
         transform: rotate(0deg);
     }
 }
-
-@keyframes hoverTouch {
-    0% {
-        color: inherit;
-    }
-    20% {
-        color: $accent-2;
-    }
-}
-

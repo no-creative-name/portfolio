@@ -14,7 +14,7 @@
 
 <body>
   <main>
-    <div class="container" id="welcomeContainer">
+    <div class="container container--full-height" id="welcomeContainer">
       <h1>
         Kai Wißler
       </h1>
@@ -23,31 +23,29 @@
       </h2>
       <i class="arrow down"></i>
     </div>
-    <div class="container" id="introContainer">
-      <p class="headline-2">
+    <div class="container container--full-height" id="intro-container">
+      <p class="headline-3">
         Hi there!
       </p>
-      <p class="headline-3">
-        It’s me:
-      </p>
-      <p class="headline-1">
-        Kai
+      <div class="portrait-wrapper">
+        <img id="self-portrait" src="../vid/me.gif" alt="self-portrait" />
+      </div>
+      <p class="headline-2">
+        I'm Kai.
       </p>
     </div>
-    <img alt="self-portrait" id="video--mobile" src="../vid/walking-in-060.png"></img>
-    <img alt="self-portrait" id="video--desktop" src="../vid/walking-in-001.png"></img>
-    <div class="container" id="webDevContainer">
+    <div class="container container--full-height" id="web-dev-container">
       <p class="headline-2">
-        I’m a passionate
+        my profession:
       </p>
-      <div class="codeBox">
-        <span class="codeBox__content"></span>
-        <span class="codeBox__caret"></span>
+      <div class="code-box">
+        <span class="code-box__content"></span>
+        <span class="code-box__caret"></span>
       </div>
     </div>
-    <div class="container" id="descriptionContainer">
+    <div class="container" id="description-container">
       <p class="headline-3">
-        an
+        i'm an
       </p>
       <p class="headline-2">
         avid
@@ -74,49 +72,49 @@
       </p>
       <div class="skills">
         <div class="skills__legend">
-          <div class="skills__legendStep">
+          <div class="skills__legend-step">
             <span>Baby Steps</span>
-            <div class="skills__legendStepMarker"></div>
+            <div class="skills__legend-step-marker"></div>
           </div>
-          <div class="skills__legendStep">
+          <div class="skills__legend-step">
             <span>Walking</span>
-            <div class="skills__legendStepMarker"></div>
+            <div class="skills__legend-step-marker"></div>
           </div>
-          <div class="skills__legendStep">
+          <div class="skills__legend-step">
             <span>Jogging</span>
-            <div class="skills__legendStepMarker"></div>
+            <div class="skills__legend-step-marker"></div>
           </div>
-          <div class="skills__legendStep">
+          <div class="skills__legend-step">
             <span>Running</span>
-            <div class="skills__legendStepMarker"></div>
+            <div class="skills__legend-step-marker"></div>
           </div>
-          <div class="skills__legendStep">
+          <div class="skills__legend-step">
             <span>Usain Bolt</span>
-            <div class="skills__legendStepMarker"></div>
+            <div class="skills__legend-step-marker"></div>
           </div>
         </div>
-        <div class="skills__skillBubble" id="skillBubble1" data-percentage="75">
-          <div class="percentage"></div>
+        <div class="skills__bar" id="skill-bubble-1" data-percentage="75">
+          <div class="skills__bar-percentage"></div>
           <span>JavaScript</span>
         </div>
-        <div class="skills__skillBubble" id="skillBubble2" data-percentage="62.5">
-          <div class="percentage"></div>
+        <div class="skills__bar" id="skill-bubble-2" data-percentage="62.5">
+          <div class="skills__bar-percentage"></div>
           <span>TypeScript</span>
         </div>
-        <div class="skills__skillBubble" id="skillBubble3" data-percentage="50">
-          <div class="percentage"></div>
+        <div class="skills__bar" id="skill-bubble-3" data-percentage="50">
+          <div class="skills__bar-percentage"></div>
           <span>React</span>
         </div>
-        <div class="skills__skillBubble" id="skillBubble4" data-percentage="37.5">
-          <div class="percentage"></div>
+        <div class="skills__bar" id="skill-bubble-4" data-percentage="37.5">
+          <div class="skills__bar-percentage"></div>
           <span>Web Components</span>
         </div>
-        <div class="skills__skillBubble" id="skillBubble5" data-percentage="75">
-          <div class="percentage"></div>
+        <div class="skills__bar" id="skill-bubble-5" data-percentage="75">
+          <div class="skills__bar-percentage"></div>
           <span>SCSS</span>
         </div>
-        <div class="skills__skillBubble" id="skillBubble6" data-percentage="87.5">
-          <div class="percentage"></div>
+        <div class="skills__bar" id="skill-bubble-6" data-percentage="87.5">
+          <div class="skills__bar-percentage"></div>
           <span>HTML5</span>
         </div>
       </div>
@@ -126,11 +124,11 @@
         <p class="headline-3">
           i'm looking forward to get
         </p>
-        <div id="touchContainer">
-          <p class="headline-1" id="touchL">
+        <div id="touch-container">
+          <p class="headline-1" id="touch-l">
             in
           </p>
-          <p class="headline-1" id="touchR">
+          <p class="headline-1" id="touch-r">
             touch
           </p>
         </div>
@@ -138,8 +136,9 @@
           with you
         </p>
       </div>
-      <div class="contactLinks" id="contactLinksContainer">
-        <a class="contactLink" href="https://github.com/no-creative-name" target="_blank" aria-label="github" rel="noopener">
+      <div id="contact-links-container">
+        <a class="contact-link" href="https://github.com/no-creative-name" target="_blank" aria-label="github"
+          rel="noopener">
           <svg id="github" width="1024" height="1024" viewBox="0 0 1024 1024" fill="none"
             xmlns="http://www.w3.org/2000/svg">
             <path fill-rule="evenodd" clip-rule="evenodd"
@@ -147,7 +146,8 @@
               transform="scale(64)" fill="#FFFFFF" />
           </svg>
         </a>
-        <a class="contactLink" href="https://www.xing.com/profile/Kai_Wissler/cv" target="_blank" aria-label="xing" rel="noopener">
+        <a class="contact-link" href="https://www.xing.com/profile/Kai_Wissler/cv" target="_blank" aria-label="xing"
+          rel="noopener">
           <svg id="xing" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
             x="0px" y="0px" fill="#FFFFFF" width="438.536px" height="438.536px" viewBox="0 0 438.536 438.536"
             style="enable-background:new 0 0 438.536 438.536;" xml:space="preserve">
@@ -165,7 +165,8 @@
             </g>
           </svg>
         </a>
-        <a class="contactLink" href="https://www.linkedin.com/in/kai-wi%C3%9Fler-54765a165/" target="_blank" aria-label="linkedin" rel="noopener">
+        <a class="contact-link" href="https://www.linkedin.com/in/kai-wi%C3%9Fler-54765a165/" target="_blank"
+          aria-label="linkedin" rel="noopener">
           <svg id="linkedin" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
             x="0px" y="0px" fill="#FFFFFF" viewBox="0 0 382 382" style="enable-background:new 0 0 382 382;"
             xml:space="preserve">
@@ -181,9 +182,10 @@
           </svg>
         </a>
       </div>
-      <div class="hiddenIcon">
+      <div class="hidden-icon">
         <div id="spotify-hover"></div>
-        <a href="https://open.spotify.com/artist/2NGEe8HEMFZSrgvfi5KmWS?si=cjMmMM_JTUK1ibrqKPwq_w" target="_blank" aria-label="spotify" rel="noopener">
+        <a href="https://open.spotify.com/artist/2NGEe8HEMFZSrgvfi5KmWS?si=cjMmMM_JTUK1ibrqKPwq_w" target="_blank"
+          aria-label="spotify" rel="noopener">
           <svg id="spotify" xmlns="http://www.w3.org/2000/svg" fill="#FFFFFF" height="168px" width="168px" version="1.1"
             viewBox="0 0 168 168">
             <path

@@ -4,23 +4,23 @@ require("scrollmagic/scrollmagic/uncompressed/plugins/animation.gsap");
 
 export const setupDescriptionAnimation = (controller: any) => {
   const inTween = new TimelineMax()
-    .from("#descriptionContainer :nth-child(1)", 1.5, {
+    .from("#description-container :nth-child(1)", 1.5, {
       x: "-100vw",
       ease: Back.easeOut,
     })
-    .from("#descriptionContainer :nth-child(2)", 1.5, {
+    .from("#description-container :nth-child(2)", 1.5, {
+      x: "100vw",
+      ease: Back.easeOut,
+    })
+    .from("#description-container :nth-child(3)", 1.5, {
       x: "-100vw",
       ease: Back.easeOut,
     })
-    .from("#descriptionContainer :nth-child(3)", 1.5, {
-      x: "-100vw",
+    .from("#description-container :nth-child(4)", 1.5, {
+      x: "100vw",
       ease: Back.easeOut,
     })
-    .from("#descriptionContainer :nth-child(4)", 1.5, {
-      x: "-100vw",
-      ease: Back.easeOut,
-    })
-    .from("#descriptionContainer :nth-child(5)", 1.5, {
+    .from("#description-container :nth-child(5)", 1.5, {
       x: "-100vw",
       ease: Back.easeOut,
     });
@@ -29,7 +29,7 @@ export const setupDescriptionAnimation = (controller: any) => {
     .to("main", 1.0, { backgroundColor: "#235867" });
 
   new ScrollMagic.Scene({
-    triggerElement: "#descriptionContainer",
+    triggerElement: "#description-container",
     triggerHook: "onEnter",
     duration: "80%",
     offset: 200,
@@ -38,7 +38,7 @@ export const setupDescriptionAnimation = (controller: any) => {
     .addTo(controller);
 
   new ScrollMagic.Scene({
-    triggerElement: "#descriptionContainer",
+    triggerElement: "#description-container",
     triggerHook: "onCenter",
     duration: "100%"
   })
