@@ -11,24 +11,29 @@
     flex-direction: column;
     color: white;
     text-transform: uppercase;
-
-    &--full-height {
-        height: 100vh;
-    }
 }
 
-#portrait-wrapper {
+.portrait-wrapper {
     display: flex;
+    flex-direction: column;
     justify-content: center;
     align-items: center;
     height: 40%;
 
     #self-portrait {
-        width: 100%;
-        max-height: 80%;
+        margin: 20px 0;
+        width: 250px;
+        height: 250px;
         background-size: cover;
-        border-radius: 50%;
         border: 10px solid white;
+        background-image: url('../vid/me.gif');
+        background-size: cover;
+        background-position: center;
+
+        @media only screen and (min-width: $bp-tablet) {
+            width: 350px;
+            height: 350px;
+        }
     }
 }
 
@@ -53,8 +58,7 @@
         &--desktop {
             display: block;
         }
-    } 
-
+    }
 }
 
 .code-box {

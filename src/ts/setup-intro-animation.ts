@@ -4,8 +4,9 @@ require("scrollmagic/scrollmagic/uncompressed/plugins/animation.gsap");
 
 export const setupIntroAnimation = (controller: any) => {
   const inTween = new TimelineMax()
-    .from("#selfPortrait", 1.5, {
+    .from("#self-portrait", 1.5, {
       width: 0,
+      borderWidth: 0,
       ease: Back.easeOut,
     });
 
