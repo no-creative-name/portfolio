@@ -173,6 +173,7 @@
     margin-top: 40px;
 
     > * {
+        min-width: 50px;
         max-width: 200px;
 
         &:not(:last-child) {
@@ -234,7 +235,7 @@
 .hidden-icon {
     position: absolute;
     bottom: -30px;
-    left: 20%;
+    left: 10%;
 
     > a {
         display: block;
@@ -291,6 +292,29 @@
     padding: 10px;
     animation: 1s ease 0s infinite alternate blink;
     animation-delay: 0.2s;
+}
+
+#imprint-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+
+    &.visible {
+        height: 100vh;
+    }
+}
+
+#imprint-trigger {
+    cursor: pointer;
+    transition: font-size 0.2s;
+}
+
+.imprint {
+    display: none;
+
+    &.visible {
+        display: block;
+    }
 }
 
 @keyframes blink {

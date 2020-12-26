@@ -5,6 +5,7 @@ import { setupWebDevAnimation } from './setup-web-dev-animation';
 import { setupSkillsAnimation } from './setup-skills-animation';
 import { setupContactAnimation } from './setup-contact-animation';
 import { setupDescriptionAnimation } from './setup-description-animation';
+import { setupImprint } from './setup-imprint';
 
 const ScrollMagic = require('scrollmagic');
 require("scrollmagic/scrollmagic/uncompressed/plugins/animation.gsap");
@@ -16,3 +17,4 @@ setupWebDevAnimation(controller);
 setupDescriptionAnimation(controller);
 setupSkillsAnimation(controller);
 setupContactAnimation(controller);
+setupImprint();
