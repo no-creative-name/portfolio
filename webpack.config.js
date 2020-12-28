@@ -26,7 +26,7 @@ module.exports = {
         ],
       },
       {
-        test: [/\.jpg$/, /\.gif$/, /\.png$/, /\.svg$/, /\.mp4$/],
+        test: [/\.jpg$/, /\.gif$/, /\.png$/, /\.svg$/, /\.ico$/],
         use: {
           loader: "file-loader",
           options: {
@@ -56,6 +56,7 @@ module.exports = {
   },
   plugins: [
     new HtmlWebpackPlugin({
+      favicon: './src/favicons/favicon.ico',
       filename: 'index.html',
       title: 'index',
       template: './src/html/index.html',
