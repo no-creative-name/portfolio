@@ -2,15 +2,15 @@ const path = require('path');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 
 module.exports = {
-  entry: './src/js/index.js',
+  entry: './src/ts/index.ts',
   output: {
     path: path.resolve(__dirname, 'dist'),
     filename: 'bundle.js'
   },
   resolve: {
-    alias: {
-      "ScrollMagicGSAP": "scrollmagic/scrollmagic/uncompressed/plugins/animation.gsap"
-    }
+    extensions: [
+      '.ts', '.js'
+    ],
   },
   module: {
     rules: [
@@ -25,23 +25,42 @@ module.exports = {
           'sass-loader',
         ],
       },
-      { test: [/\.jpg$/, /\.svg$/], use: 'file-loader' },
+      {
+        test: [/\.jpg$/, /\.gif$/, /\.png$/, /\.svg$/, /\.ico$/],
+        use: {
+          loader: "file-loader",
+          options: {
+            name: "[name].[hash].[ext]"
+          }
+        }
+      },
+      {
+        test: /\.ts$/,
+        use: 'ts-loader',
+        exclude: /node_modules/,
+      },
       {
         test: /\.js$/,
         loader: "imports-loader?define=>false"
       },
       {
-         test: /\.(html)$/,
-         use: ['html-loader']
+        test: /\.(html)$/,
+        use: {
+          loader: 'html-loader',
+          options: {
+            attrs: [":src"]
+          }
+        }
       }
     ]
   },
   plugins: [
     new HtmlWebpackPlugin({
-        filename: 'index.html',
-        title: 'index',
-        template: './src/html/index.html',
-        inject: true,
+      favicon: './src/favicons/favicon.ico',
+      filename: 'index.html',
+      title: 'index',
+      template: './src/html/index.html',
+      inject: true,
     }),
   ]
 };
