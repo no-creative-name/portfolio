@@ -11,6 +11,8 @@ const ScrollMagic = require('scrollmagic');
 require("scrollmagic/scrollmagic/uncompressed/plugins/animation.gsap");
 const controller = new ScrollMagic.Controller();
 
+document.body.style.visibility = 'visible';
+
 considerMobileMenuBar();
 setupIntroAnimation(controller);
 setupWebDevAnimation(controller);
