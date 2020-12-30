@@ -151,7 +151,7 @@
             left: 0;
             height: 100%;
             width: 0%;
-            background-color: $accent-3;
+            background-color: $accent-5;
         }
 
         > span {
@@ -163,6 +163,13 @@
             overflow: hidden;
         }
     }
+}
+
+.project-link {
+  display: block;
+  margin: 20px 0 20px 0;
+  text-decoration: underline;
+  color: white;
 }
 
 #contact-links-container {

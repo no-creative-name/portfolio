@@ -1,4 +1,5 @@
 import { Back, TimelineMax } from "gsap";
+import { BG_COLORS } from "./constants";
 const ScrollMagic = require('scrollmagic');
 require("scrollmagic/scrollmagic/uncompressed/plugins/animation.gsap");
 
@@ -11,7 +12,7 @@ export const setupIntroAnimation = (controller: any) => {
     });
 
   const bgTween = new TimelineMax()
-    .to("main", 1.0, { backgroundColor: "#102c32" });
+    .to("main", 1.0, { backgroundColor: BG_COLORS[1] });
 
   new ScrollMagic.Scene({
     triggerElement: "#intro-container",

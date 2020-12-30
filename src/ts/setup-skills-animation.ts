@@ -1,5 +1,6 @@
 
 import { Back, TimelineMax, TweenMax } from 'gsap';
+import { BG_COLORS } from './constants';
 
 const ScrollMagic = require('scrollmagic');
 require("scrollmagic/scrollmagic/uncompressed/plugins/animation.gsap");
@@ -49,7 +50,7 @@ export const setupSkillsAnimation = (controller: any) => {
 		.addTo(controller);
 
 	const bgTween = new TimelineMax()
-		.to("main", 1.0, { backgroundColor: "#2F798E" });
+		.to("main", 1.0, { backgroundColor: BG_COLORS[3] });
 
 	new ScrollMagic.Scene({
 		triggerElement: ".skills",
