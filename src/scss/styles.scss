@@ -22,18 +22,12 @@
 
     #self-portrait {
         margin: 20px 0;
-        width: 250px;
-        height: 250px;
+        aspect-ratio: 1;
         background-size: cover;
         border: 10px solid white;
         background-image: url('../vid/me.gif');
         background-size: cover;
         background-position: center;
-
-        @media only screen and (min-width: $bp-tablet) {
-            width: 350px;
-            height: 350px;
-        }
     }
 }
 
