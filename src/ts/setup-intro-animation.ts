@@ -1,32 +1,40 @@
-import { Back, TimelineMax } from "gsap";
+import { gsap } from "gsap";
 import { BG_COLORS } from "./constants";
-const ScrollMagic = require('scrollmagic');
-require("scrollmagic/scrollmagic/uncompressed/plugins/animation.gsap");
 
-export const setupIntroAnimation = (controller: any) => {
-  const inTween = new TimelineMax()
-    .from("#self-portrait", 1.5, {
+export const setupIntroAnimation = () => {
+  gsap
+    .timeline({
+      scrollTrigger: {
+        trigger: "#intro-container",
+        start: "top center",
+        end: "+300px",
+        scrub: true,
+      },
+    })
+    .from("#self-portrait", {
       width: 0,
       borderWidth: 0,
-      ease: Back.easeOut,
+      ease: "back.out",
+    })
+    .to("#self-portrait", {
+      width: 300,
+      borderWidth: 10,
+      ease: "back.out",
     });
 
-  const bgTween = new TimelineMax()
-    .to("main", 1.0, { backgroundColor: BG_COLORS[1] });
-
-  new ScrollMagic.Scene({
-    triggerElement: "#intro-container",
-    triggerHook: "onCenter",
-    duration: "30%",
-  })
-    .setTween(inTween)
-    .addTo(controller);
-
-  new ScrollMagic.Scene({
-    triggerElement: "#intro-container",
-    triggerHook: "onCenter",
-    duration: "100%"
-  })
-    .setTween(bgTween)
-    .addTo(controller);
-}
+  gsap
+    .timeline({
+      scrollTrigger: {
+        trigger: "#intro-container",
+        start: "top bottom",
+        end: "bottom bottom",
+        scrub: true,
+      },
+    })
+    .from("main", {
+      backgroundColor: BG_COLORS[0],
+    })
+    .to("main", {
+      backgroundColor: BG_COLORS[1],
+    });
+};

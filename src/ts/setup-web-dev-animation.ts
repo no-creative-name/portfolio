@@ -1,32 +1,40 @@
-import { TimelineMax } from 'gsap';
-import { BG_COLORS } from './constants';
+import { gsap } from "gsap";
+import { BG_COLORS } from "./constants";
 
-const ScrollMagic = require('scrollmagic');
-require("scrollmagic/scrollmagic/uncompressed/plugins/animation.gsap");
+const completeString = "/web/dev";
 
-const completeString = '/web/dev';
-
-export const setupWebDevAnimation = (controller: any) => {
-  const codeBox = document.querySelector('.code-box__content');
-  const bgTween = new TimelineMax()
-    .to("main", 1.0, { backgroundColor: BG_COLORS[2] });
-
-  new ScrollMagic.Scene({
-    triggerElement: ".code-box",
-    triggerHook: "onEnter",
-    duration: "30%",
-  })
-    .on('progress', (e: any) => {
-      const numOfChars = completeString.split('').length;
-      codeBox.innerHTML = completeString.slice(0, Math.floor(numOfChars * e.progress));
+export const setupWebDevAnimation = () => {
+  gsap
+    .timeline({
+      scrollTrigger: {
+        trigger: ".code-box",
+        start: "bottom 110%",
+        end: "center center",
+        scrub: true,
+        onUpdate: (self) => {
+          const codeBox = document.querySelector(".code-box__content");
+          const numOfChars = completeString.split("").length;
+          codeBox.innerHTML = completeString.slice(
+            0,
+            Math.floor(numOfChars * self.progress)
+          );
+        },
+      },
     })
-    .addTo(controller);
 
-  new ScrollMagic.Scene({
-    triggerElement: ".code-box",
-    triggerHook: "onEnter",
-    duration: "100%"
-  })
-    .setTween(bgTween)
-    .addTo(controller);
-}
+    gsap
+      .timeline({
+        scrollTrigger: {
+          trigger: "#web-dev-container",
+          start: "top bottom",
+          end: "bottom bottom",
+          scrub: true,
+        },
+      })
+      .from("main", {
+        backgroundColor: BG_COLORS[1],
+      })
+      .to("main", {
+        backgroundColor: BG_COLORS[2],
+      });
+};

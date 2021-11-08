@@ -1,3 +1,5 @@
+import { gsap } from "gsap";
+import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import '../scss/styles.scss';
 import { considerMobileMenuBar } from './consider-mobile-menu-bar';
 import { setupIntroAnimation } from './setup-intro-animation';
@@ -7,16 +9,14 @@ import { setupContactAnimation } from './setup-contact-animation';
 import { setupImprint } from './setup-imprint';
 import { setupProjectsAnimation } from './setup-projects-animation';
 
-const ScrollMagic = require('scrollmagic');
-require("scrollmagic/scrollmagic/uncompressed/plugins/animation.gsap");
-const controller = new ScrollMagic.Controller();
-
 document.body.style.visibility = 'visible';
 
+gsap.registerPlugin(ScrollTrigger);
+
 considerMobileMenuBar();
-setupIntroAnimation(controller);
-setupWebDevAnimation(controller);
-setupProjectsAnimation(controller);
-setupSkillsAnimation(controller);
-setupContactAnimation(controller);
+setupIntroAnimation();
+setupWebDevAnimation();
+setupSkillsAnimation();
+setupProjectsAnimation();
+setupContactAnimation();
 setupImprint();

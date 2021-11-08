@@ -1,16 +1,14 @@
-const path = require('path');
-const HtmlWebpackPlugin = require('html-webpack-plugin');
+const path = require("path");
+const HtmlWebpackPlugin = require("html-webpack-plugin");
 
 module.exports = {
-  entry: './src/ts/index.ts',
+  entry: "./src/ts/index.ts",
   output: {
-    path: path.resolve(__dirname, 'dist'),
-    filename: 'bundle.js'
+    path: path.resolve(__dirname, "dist"),
+    filename: "bundle.js",
   },
   resolve: {
-    extensions: [
-      '.ts', '.js'
-    ],
+    extensions: [".ts", ".js"],
   },
   module: {
     rules: [
@@ -18,49 +16,43 @@ module.exports = {
         test: /\.s[ac]ss$/i,
         use: [
           // Creates `style` nodes from JS strings
-          'style-loader',
+          "style-loader",
           // Translates CSS into CommonJS
-          'css-loader',
+          "css-loader",
           // Compiles Sass to CSS
-          'sass-loader',
+          "sass-loader",
         ],
       },
       {
-        test: [/\.jpg$/, /\.gif$/, /\.png$/, /\.svg$/, /\.ico$/],
-        use: {
-          loader: "file-loader",
-          options: {
-            name: "[name].[hash].[ext]"
-          }
-        }
-      },
-      {
         test: /\.ts$/,
-        use: 'ts-loader',
+        use: "ts-loader",
         exclude: /node_modules/,
       },
       {
         test: /\.js$/,
-        loader: "imports-loader?define=>false"
+        use: {
+          loader: "imports-loader",
+          options: {
+            additionalCode:
+              "var define = false; /* Disable AMD for misbehaving libraries */",
+          },
+        },
       },
       {
         test: /\.(html)$/,
         use: {
-          loader: 'html-loader',
-          options: {
-            attrs: [":src"]
-          }
-        }
-      }
-    ]
+          loader: "html-loader",
+        },
+      },
+    ],
   },
   plugins: [
     new HtmlWebpackPlugin({
-      favicon: './src/favicons/favicon.ico',
-      filename: 'index.html',
-      title: 'index',
-      template: './src/html/index.html',
+      favicon: "./src/favicons/favicon.ico",
+      filename: "index.html",
+      title: "index",
+      template: "./src/html/index.html",
       inject: true,
     }),
-  ]
+  ],
 };

@@ -22,7 +22,7 @@
 
     #self-portrait {
         margin: 20px 0;
-        min-width: 350px;
+        width: 300px;
         aspect-ratio: 1;
         background-size: cover;
         border: 10px solid white;
@@ -303,10 +303,18 @@
 
     &.visible {
         height: 100vh;
+
+        #imprint-trigger {
+            position: relative;
+        }
     }
 }
 
 #imprint-trigger {
+    position: absolute;
+    width: 100vw;
+    left: 0;
+    bottom: 0;
     cursor: pointer;
     transition: font-size 0.2s;
 }

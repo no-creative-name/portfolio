@@ -1,49 +1,50 @@
-import { Back, TimelineMax } from "gsap";
+import { gsap } from "gsap";
 import { BG_COLORS } from "./constants";
 
-const ScrollMagic = require('scrollmagic');
-require("scrollmagic/scrollmagic/uncompressed/plugins/animation.gsap");
+export const setupProjectsAnimation = () => {
+  gsap
+    .timeline({
+      scrollTrigger: {
+        trigger: "#projects-container",
+        start: "top 300px",
+        end: "bottom 100%",
+        scrub: true,
+      },
+    })
+    .from("#projects-container :nth-child(1)", {
+      x: "-100vw",
+      ease: "back-out",
+    })
+    .from("#projects-container :nth-child(2)", {
+      x: "100vw",
+      ease: "back-out",
+    })
+    .from("#projects-container :nth-child(3)", {
+      x: "-100vw",
+      ease: "back-out",
+    })
+    .from("#projects-container :nth-child(4)", {
+      x: "100vw",
+      ease: "back-out",
+    })
+    .from("#projects-container :nth-child(5)", {
+      x: "-100vw",
+      ease: "back-out",
+    })
 
-export const setupProjectsAnimation = (controller: any) => {
-  const inTween = new TimelineMax()
-    .from("#projects-container :nth-child(1)", 1.5, {
-      x: "-100vw",
-      ease: Back.easeOut,
+  gsap
+    .timeline({
+      scrollTrigger: {
+        trigger: "#projects-container",
+        start: "top bottom",
+        end: "bottom bottom",
+        scrub: true,
+      },
     })
-    .from("#projects-container :nth-child(2)", 1.5, {
-      x: "100vw",
-      ease: Back.easeOut,
+    .from("main", {
+      backgroundColor: BG_COLORS[3],
     })
-    .from("#projects-container :nth-child(3)", 1.5, {
-      x: "-100vw",
-      ease: Back.easeOut,
-    })
-    .from("#projects-container :nth-child(4)", 1.5, {
-      x: "100vw",
-      ease: Back.easeOut,
-    })
-    .from("#projects-container :nth-child(5)", 1.5, {
-      x: "-100vw",
-      ease: Back.easeOut,
+    .to("main", {
+      backgroundColor: BG_COLORS[4],
     });
-
-	new ScrollMagic.Scene({
-    triggerElement: "#projects-container",
-    triggerHook: "onEnter",
-    duration: "80%",
-    offset: 200,
-	})
-		.setTween(inTween)
-		.addTo(controller);
-
-	const bgTween = new TimelineMax()
-		.to("main", 1.0, { backgroundColor: BG_COLORS[4] });
-
-	new ScrollMagic.Scene({
-		triggerElement: "#projects-container",
-		triggerHook: "onEnter",
-		duration: "100%"
-	})
-		.setTween(bgTween)
-		.addTo(controller);
-}
+};

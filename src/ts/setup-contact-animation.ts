@@ -1,32 +1,33 @@
-import { Back, TimelineMax } from "gsap";
+import { gsap } from "gsap";
 import { BG_COLORS } from "./constants";
 
-const ScrollMagic = require('scrollmagic');
-require("scrollmagic/scrollmagic/uncompressed/plugins/animation.gsap");
+export const setupContactAnimation = () => {
+  gsap
+    .timeline({
+      scrollTrigger: {
+        trigger: "#contact-container",
+        start: "top center",
+        end: "center center",
+        scrub: true,
+      },
+    })
+    .to("#touch-r", { x: 10, duration: 1.2 })
+    .to("#touch-l", { x: -10, duration: 0.3, rotation: -5, ease: "back.out" })
+    .to("#touch-l", { rotation: 0, duration: 0.3, ease: "back.out" })
 
-export const setupContactAnimation = (controller: any) => {
-	const inTween = new TimelineMax()
-		.to("#touch-r", 1.2, { x: 10, })
-		.to("#touch-l", 0.3, { x: -10, rotation: -5, ease: Back.easeOut })
-		.to("#touch-l", 0.3, { rotation: 0, ease: Back.easeOut });
-
-	new ScrollMagic.Scene({
-		triggerElement: "#contact-links-container",
-		triggerHook: "onEnter",
-		duration: "40%",
-		offset: -100
-	})
-		.setTween(inTween)
-		.addTo(controller);
-
-	const bgTween = new TimelineMax()
-		.to("main", 1.0, { backgroundColor: BG_COLORS[5] });
-
-	new ScrollMagic.Scene({
-		triggerElement: "#contact-links-container",
-		triggerHook: "onEnter",
-		duration: "100%"
-	})
-		.setTween(bgTween)
-		.addTo(controller);
-}
+    gsap
+      .timeline({
+        scrollTrigger: {
+          trigger: "#contact-container",
+          start: "top bottom",
+          end: "bottom bottom",
+          scrub: true,
+        },
+      })
+      .from("main", {
+        backgroundColor: BG_COLORS[4],
+      })
+      .to("main", {
+        backgroundColor: BG_COLORS[5],
+      });
+};
