@@ -63,6 +63,7 @@ export const ProjectsChapter = () => {
         className="project-link headline-1"
         href="http://listify.kaiwissler.de"
         target="_blank"
+        rel="noreferrer"
       >
         Listify
       </a>
@@ -73,6 +74,7 @@ export const ProjectsChapter = () => {
         className="project-link headline-1"
         href="http://chordr.kaiwissler.de"
         target="_blank"
+        rel="noreferrer"
       >
         Chordr
       </a>

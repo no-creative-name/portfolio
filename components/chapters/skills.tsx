@@ -68,9 +68,11 @@ export const SkillsChapter = () => {
 
   return (
     <div className="container" ref={(el) => (chapter.current = el)}>
-      <p className="headline-3">i've been</p>
+      <p className="headline-3">i&apos;ve been</p>
       <p className="headline-2">coding since 2015</p>
-      <p className="headline-3">and here's what i've learned so far:</p>
+      <p className="headline-3">
+        and here&apos;s what i&apos;ve learned so far:
+      </p>
       <div className="skills" ref={(el) => (skills.current = el)}>
         <div className="skills__legend">
           <div className="skills__legend-step">

@@ -56,7 +56,7 @@ export const IntroChapter = () => {
       <div className="portrait-wrapper">
         <div id="self-portrait" ref={(el) => (image.current = el)}/>
       </div>
-      <p className="headline-2">I'm Kai.</p>
+      <p className="headline-2">I&apos;m Kai.</p>
     </div>
   );
 };
