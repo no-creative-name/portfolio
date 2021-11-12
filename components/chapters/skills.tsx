@@ -49,7 +49,7 @@ export const SkillsChapter = () => {
       gsap
         .timeline({
           scrollTrigger: {
-            trigger: skills.current,
+            trigger: chapter.current,
             start: "top bottom",
             end: "bottom bottom",
             scrub: true,

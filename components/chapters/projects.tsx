@@ -41,7 +41,7 @@ export const ProjectsChapter = () => {
       gsap
         .timeline({
           scrollTrigger: {
-            trigger: "#projects-container",
+            trigger: chapter.current,
             start: "top bottom",
             end: "bottom bottom",
             scrub: true,
