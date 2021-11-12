@@ -1,0 +1,322 @@
+.container {
+  width: 85%;
+  min-height: 110vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  color: white;
+  text-transform: uppercase;
+}
+.portrait-wrapper {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: 40%;
+}
+.portrait-wrapper #self-portrait {
+  margin: 20px 0;
+  width: 300px;
+  aspect-ratio: 1;
+  background-size: cover;
+  border: 10px solid white;
+  background-image: url("/media/me.gif");
+  background-size: cover;
+  background-position: center;
+}
+#video--mobile,
+#video--desktop {
+  object-fit: cover;
+  width: 100%;
+  min-height: 100vh;
+  transition: transform 0.2s ease;
+}
+#video--desktop {
+  display: none;
+}
+@media only screen and (min-width: var(--bp-tablet)) {
+  #video--mobile {
+    display: none;
+  }
+  #video--desktop {
+    display: block;
+  }
+}
+.code-box {
+  display: flex;
+  align-items: center;
+  min-height: 66px;
+  margin: 20px 0;
+  padding: 10px;
+  font-family: "Courier";
+  color: var(--accent-5);
+  background-color: var(--accent-1);
+  border-radius: 5px;
+  box-sizing: border-box;
+  word-break: break-word;
+  text-transform: none;
+  min-width: 100%;
+  font-size: 40px;
+}
+@media only screen and (min-width: var(--bp-tablet)) {
+  .code-box {
+    min-width: 40%;
+    font-size: 70px;
+  }
+}
+.code-box__caret {
+  display: inline-block;
+  height: 80%;
+  width: 5px;
+  background-color: var(--accent-5);
+  margin-left: 8px;
+  animation: 0.5s linear 0s infinite alternate blink;
+}
+.skills {
+  width: 100%;
+  margin-top: 10vh;
+}
+@media only screen and (min-width: var(--bp-tablet)) {
+  .skills {
+    width: 70%;
+  }
+}
+.skills__legend {
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+}
+.skills__legend-step {
+  margin-bottom: 30px;
+  position: relative;
+  white-space: nowrap;
+}
+.skills__legend-step-marker {
+  position: absolute;
+  content: "";
+  display: block;
+  width: 2px;
+  background: linear-gradient(
+    180deg,
+    rgba(255, 255, 255, 1) 0%,
+    rgba(255, 255, 255, 1) 76%,
+    rgba(255, 255, 255, 0) 100%
+  );
+}
+.skills__legend-step:first-child .skills__legendStepMarker {
+  transform: translateX(-2px);
+}
+.skills__legend-step > span {
+  font-size: 1rem;
+  position: absolute;
+  bottom: 0;
+  transform: translateX(-50%);
+}
+@media only screen and (min-width: var(--bp-tablet)) {
+  .skills__legend-step > span {
+    font-size: 1.5rem;
+  }
+}
+.skills__bar {
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 10px;
+  margin-bottom: 15px;
+  background-color: var(--accent-2);
+  transition: transform 0.2s ease-in-out;
+}
+.skills__bar-percentage {
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 100%;
+  width: 0%;
+  background-color: var(--accent-5);
+}
+.skills__bar > span {
+  font-size: 35px;
+  height: 40px;
+  z-index: 50;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  overflow: hidden;
+}
+.project-link {
+  display: block;
+  margin: 20px 0 20px 0;
+  text-decoration: underline;
+  color: white;
+}
+#contact-links-container {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  margin-top: 40px;
+}
+#contact-links-container > * {
+  min-width: 50px;
+  max-width: 200px;
+}
+#contact-links-container > *:not(:last-child) {
+  margin-right: 50px;
+}
+#contact-links-container #github {
+  width: 100%;
+  height: 100%;
+}
+#contact-links-container #github path {
+  transition: fill 0.1s;
+}
+#contact-links-container #github:hover path {
+  fill: #6e5494;
+}
+#contact-links-container #xing {
+  width: 100%;
+  height: 100%;
+}
+#contact-links-container #xing path {
+  transition: fill 0.1s;
+}
+#contact-links-container #xing:hover path {
+  fill: #cfdc00;
+}
+#contact-links-container #linkedin {
+  width: 100%;
+  height: 100%;
+}
+#contact-links-container #linkedin path {
+  transition: fill 0.1s;
+}
+#contact-links-container #linkedin:hover path {
+  fill: #0077b7;
+}
+.contact-link {
+  width: 20%;
+}
+#touch-container {
+  display: flex;
+}
+#touch-container #touch-l {
+  transform: translateX(12px);
+}
+#touch-container #touch-r {
+  transform: translateX(100vw);
+}
+.hidden-icon {
+  position: absolute;
+  bottom: -30px;
+  left: 10%;
+}
+.hidden-icon > a {
+  display: block;
+  transition: transform 0.2s;
+}
+.hidden-icon > a:hover {
+  transform: translateY(-40px);
+}
+.hidden-icon > a:hover #spotify {
+  animation: none;
+}
+.hidden-icon > a:hover #spotify path {
+  fill: #1ed760;
+}
+.hidden-icon #spotify {
+  width: 3rem;
+  height: 3rem;
+  animation: 2s ease-in-out 0s infinite wiggle;
+}
+.hidden-icon #spotify path {
+  transition: fill 0.1s;
+}
+.hidden-icon #spotify-hover {
+  position: absolute;
+  bottom: 0;
+  width: 100px;
+  height: 100px;
+}
+.hidden-icon #spotify-hover:hover + a {
+  transform: translateY(-40px);
+}
+.hidden-icon #spotify-hover:hover + a #spotify {
+  animation: none;
+}
+.arrow.down {
+  opacity: 0;
+  border: solid white;
+  display: inline-block;
+  margin-top: 55px;
+  transform: rotate(45deg);
+  -webkit-transform: rotate(45deg);
+  border-width: 0 8px 8px 0;
+  padding: 10px;
+  animation: 1s ease 0s infinite alternate blink;
+  animation-delay: 0.2s;
+}
+#imprint-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+#imprint-container.visible {
+  height: 100vh;
+}
+#imprint-container.visible #imprint-trigger {
+  position: relative;
+}
+#imprint-trigger {
+  position: absolute;
+  width: 100vw;
+  left: 0;
+  bottom: 0;
+  cursor: pointer;
+  transition: font-size 0.2s;
+}
+.imprint {
+  display: none;
+}
+.imprint.visible {
+  display: block;
+}
+@keyframes blink {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+@keyframes upAndDown {
+  0% {
+    transform: translateY(0);
+  }
+  30% {
+    transform: translateY(-40px);
+  }
+  60% {
+    transform: translateY(0);
+  }
+}
+@keyframes wiggle {
+  0% {
+    transform: rotate(0deg);
+  }
+  3% {
+    transform: rotate(-15deg);
+  }
+  9% {
+    transform: rotate(15deg);
+  }
+  15% {
+    transform: rotate(-15deg);
+  }
+  21% {
+    transform: rotate(15deg);
+  }
+  24% {
+    transform: rotate(0deg);
+  }
+}
