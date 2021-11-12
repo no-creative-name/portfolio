@@ -26,6 +26,12 @@ const Home: NextPage = () => {
         <title>Kai Wissler</title>
         <meta name="description" content="Portfolio of Kai Wissler" />
         <link rel="icon" href="/favicon.ico" />
+        <link
+          rel="preload"
+          href="/fonts/BebasNeue-Regular.ttf"
+          as="font"
+          crossOrigin=""
+        />
       </Head>
 
       <main>
