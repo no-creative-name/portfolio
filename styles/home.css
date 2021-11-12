@@ -35,7 +35,7 @@
 #video--desktop {
   display: none;
 }
-@media only screen and (min-width: var(--bp-tablet)) {
+@media only screen and (min-width: 800px) {
   #video--mobile {
     display: none;
   }
@@ -59,7 +59,7 @@
   min-width: 100%;
   font-size: 40px;
 }
-@media only screen and (min-width: var(--bp-tablet)) {
+@media only screen and (min-width: 800px) {
   .code-box {
     min-width: 40%;
     font-size: 70px;
@@ -77,7 +77,7 @@
   width: 100%;
   margin-top: 10vh;
 }
-@media only screen and (min-width: var(--bp-tablet)) {
+@media only screen and (min-width: 800px) {
   .skills {
     width: 70%;
   }
@@ -113,7 +113,7 @@
   bottom: 0;
   transform: translateX(-50%);
 }
-@media only screen and (min-width: var(--bp-tablet)) {
+@media only screen and (min-width: 800px) {
   .skills__legend-step > span {
     font-size: 1.5rem;
   }

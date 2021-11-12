@@ -32,7 +32,7 @@ h1,
   margin: 0;
   text-align: center;
 
-  @media only screen and (min-width: $bp-tablet) {
+  @media only screen and (min-width: 800px) {
     font-size: 11rem;
     line-height: 10rem;
   }
@@ -46,7 +46,7 @@ h2,
   margin: 0;
   text-align: center;
 
-  @media only screen and (min-width: $bp-tablet) {
+  @media only screen and (min-width: 800px) {
     font-size: 6rem;
     line-height: 6rem;
   }
