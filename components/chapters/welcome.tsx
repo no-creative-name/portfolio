@@ -1,34 +1,39 @@
-import { useContext, useRef, useEffect } from "react";
-import { BG_COLORS } from "../../lib/constants";
-import { AnimationContext } from "../../lib/context/animation-context";
+import { useRef, useEffect } from "react";
+import { ScrollTrigger } from "gsap/dist/ScrollTrigger";
+import { useVideo } from "../../lib/context/video-context";
 
 export const WelcomeChapter = () => {
-  const { gsap } = useContext(AnimationContext);
   const chapter = useRef<HTMLDivElement | null>();
+  const { setCurrentVideo } = useVideo();
+  const setCurrentVideoRef = useRef(setCurrentVideo);
+
+  // Update the ref when setCurrentVideo changes
+  useEffect(() => {
+    setCurrentVideoRef.current = setCurrentVideo;
+  }, [setCurrentVideo]);
 
   useEffect(() => {
     if (chapter.current) {
-      gsap
-        .timeline({
-          scrollTrigger: {
-            trigger: chapter.current,
-            start: "top bottom",
-            end: "bottom bottom",
-            scrub: true,
-          },
-        })
-        .from("main", {
-          backgroundColor: BG_COLORS[0],
-        })
-        .to("main", {
-          backgroundColor: BG_COLORS[0],
-        });
+      const scrollTrigger = ScrollTrigger.create({
+        trigger: chapter.current,
+        start: "top bottom",
+        end: "bottom bottom",
+        onEnterBack: () => {
+          console.log("Welcome chapter entered back - clearing queued video");
+          // Clear any queued video when scrolling back to welcome
+          setCurrentVideoRef.current("");
+        }
+      });
+
+      return () => {
+        scrollTrigger.kill();
+      };
     }
-  }, [gsap]);
+  }, []); // Empty dependency array - ScrollTrigger is created only once
 
   return (
     <div className="container" ref={(el) => chapter.current = el}>
-      <h1>Kai Wißler</h1>
+      <h1>Kai Wissler</h1>
       <h2 className="headline-3">Web Developer</h2>
       <i className="arrow down"></i>
     </div>

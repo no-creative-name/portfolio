@@ -5,10 +5,10 @@ import { useContext, useEffect, useLayoutEffect } from "react";
 import { considerMobileMenuBar } from "../lib/consider-mobile-menu-bar";
 import { IntroChapter } from "../components/chapters/intro";
 import { AnimationContext } from "../lib/context/animation-context";
+import { VideoProvider } from "../lib/context/video-context";
 import { WelcomeChapter } from "../components/chapters/welcome";
 import { WebDevChapter } from "../components/chapters/web-dev";
 import { SkillsChapter } from "../components/chapters/skills";
-import { ProjectsChapter } from "../components/chapters/projects";
 import { ContactChapter } from "../components/chapters/contact";
 
 const Home: NextPage = () => {
@@ -18,6 +18,16 @@ const Home: NextPage = () => {
     considerMobileMenuBar();
 
     gsap.registerPlugin(ScrollTrigger);
+    
+    // Single background color animation that spans the entire page
+    gsap.timeline({
+      scrollTrigger: {
+        trigger: "main",
+        start: "top top",
+        end: "bottom bottom",
+        scrub: true,
+      },
+    })
   }, [gsap]);
 
   return (
@@ -34,14 +44,15 @@ const Home: NextPage = () => {
         />
       </Head>
 
-      <main>
-        <WelcomeChapter />
-        <IntroChapter />
-        <WebDevChapter />
-        <SkillsChapter />
-        <ProjectsChapter />
-        <ContactChapter />
-      </main>
+      <VideoProvider>
+        <main>
+          <WelcomeChapter />
+          <IntroChapter />
+          <WebDevChapter />
+          <SkillsChapter />
+          <ContactChapter />
+        </main>
+      </VideoProvider>
 
       <footer></footer>
     </div>

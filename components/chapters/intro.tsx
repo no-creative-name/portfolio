@@ -1,62 +1,48 @@
 import { useContext, useEffect, useRef } from "react";
-import { BG_COLORS } from "../../lib/constants";
+import { ScrollTrigger } from "gsap/dist/ScrollTrigger";
 import { AnimationContext } from "../../lib/context/animation-context";
+import { useVideo } from "../../lib/context/video-context";
 
 export const IntroChapter = () => {
   const chapter = useRef<HTMLDivElement | null>();
-  const image = useRef<HTMLDivElement | null>();
   const { gsap } = useContext(AnimationContext);
+  const { setCurrentVideo } = useVideo();
+  const setCurrentVideoRef = useRef(setCurrentVideo);
+
+  // Update the ref when setCurrentVideo changes
+  useEffect(() => {
+    setCurrentVideoRef.current = setCurrentVideo;
+  }, [setCurrentVideo]);
 
   useEffect(() => {
-    if (chapter.current && image.current) {
-      gsap
-        .timeline({
-          scrollTrigger: {
-            trigger: chapter.current,
-            start: "top center",
-            end: "+300px",
-            scrub: true,
-          },
-        })
-        .from(image.current, {
-          width: 0,
-          borderWidth: 0,
-          ease: "back.out",
-        })
-        .to(image.current, {
-          width: 300,
-          borderWidth: 10,
-          ease: "back.out",
-        });
+    if (chapter.current) {
+      const scrollTrigger = ScrollTrigger.create({
+        trigger: chapter.current,
+        start: "top center",
+        end: "bottom center",
+        onEnter: () => {
+          console.log("Intro chapter center reached");
+          setCurrentVideoRef.current("/media/first.mp4");
+        },
+        onEnterBack: () => {
+          console.log("Intro chapter center reached (back)");
+          setCurrentVideoRef.current("/media/first.mp4");
+        }
+      });
 
-      gsap
-        .timeline({
-          scrollTrigger: {
-            trigger: chapter.current,
-            start: "top bottom",
-            end: "bottom bottom",
-            scrub: true,
-          },
-        })
-        .from("main", {
-          backgroundColor: BG_COLORS[0],
-        })
-        .to("main", {
-          backgroundColor: BG_COLORS[1],
-        });
+      return () => {
+        scrollTrigger.kill();
+      };
     }
-  }, [gsap]);
+  }, []); // Empty dependency array - ScrollTrigger is created only once
 
   return (
     <div
       className="container"
       ref={(el) => (chapter.current = el)}
     >
-      <p className="headline-3">Hi there!</p>
-      <div className="portrait-wrapper">
-        <div id="self-portrait" ref={(el) => (image.current = el)}/>
-      </div>
-      <p className="headline-2">I&apos;m Kai.</p>
+      <p className="headline-3" style={{zIndex: 10}}>Hi there!</p>
+      <p className="headline-1" style={{zIndex: 10}}>I&apos;m Kai.</p>
     </div>
   );
 };

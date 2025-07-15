@@ -1,11 +1,19 @@
 import { useRef, useContext, useEffect } from "react";
-import { BG_COLORS } from "../../lib/constants";
+import { ScrollTrigger } from "gsap/dist/ScrollTrigger";
 import { AnimationContext } from "../../lib/context/animation-context";
+import { useVideo } from "../../lib/context/video-context";
 
 export const SkillsChapter = () => {
   const chapter = useRef<HTMLDivElement | null>();
   const skills = useRef<HTMLDivElement | null>();
   const { gsap } = useContext(AnimationContext);
+  const { setCurrentVideo } = useVideo();
+  const setCurrentVideoRef = useRef(setCurrentVideo);
+
+  // Update the ref when setCurrentVideo changes
+  useEffect(() => {
+    setCurrentVideoRef.current = setCurrentVideo;
+  }, [setCurrentVideo]);
 
   useEffect(() => {
     if (chapter.current && skills.current) {
@@ -45,26 +53,30 @@ export const SkillsChapter = () => {
           width: `${percentage}%`,
         });
       });
-
-      gsap
-        .timeline({
-          scrollTrigger: {
-            trigger: chapter.current,
-            start: "top bottom",
-            end: "bottom bottom",
-            scrub: true,
-          },
-        })
-        .from("main", {
-          backgroundColor: BG_COLORS[2],
-          ease: "",
-        })
-        .to("main", {
-          backgroundColor: BG_COLORS[3],
-          ease: "",
-        });
     }
   }, [gsap]);
+
+  useEffect(() => {
+    if (chapter.current) {
+      const scrollTrigger = ScrollTrigger.create({
+        trigger: chapter.current,
+        start: "top center",
+        end: "bottom center",
+        onEnter: () => {
+          console.log("Skills chapter center reached");
+          setCurrentVideoRef.current("/media/third.mp4");
+        },
+        onEnterBack: () => {
+          console.log("Skills chapter center reached (back)");
+          setCurrentVideoRef.current("/media/third.mp4");
+        }
+      });
+
+      return () => {
+        scrollTrigger.kill();
+      };
+    }
+  }, []); // Empty dependency array - ScrollTrigger is created only once
 
   return (
     <div className="container" ref={(el) => (chapter.current = el)}>
@@ -96,29 +108,30 @@ export const SkillsChapter = () => {
             <div className="skills__legend-step-marker"></div>
           </div>
         </div>
-        <div className="skills__bar" id="skill-bubble-1" data-percentage="85">
+        <div className="skills__bar" id="skill-bubble-1" data-percentage="90">
           <div className="skills__bar-percentage"></div>
-          <span>JavaScript</span>
+          <span>🎨</span>
+          <span>Polishing Frontend</span>
         </div>
-        <div className="skills__bar" id="skill-bubble-2" data-percentage="85">
+        <div className="skills__bar" id="skill-bubble-2" data-percentage="80">
           <div className="skills__bar-percentage"></div>
-          <span>TypeScript</span>
+          <span>👥</span>
+          <span>Managing Teams & Stakeholders</span>
         </div>
-        <div className="skills__bar" id="skill-bubble-3" data-percentage="75">
+        <div className="skills__bar" id="skill-bubble-3" data-percentage="80">
           <div className="skills__bar-percentage"></div>
-          <span>React</span>
+          <span>🔧</span>
+          <span>Building Backend</span>
         </div>
-        <div className="skills__bar" id="skill-bubble-4" data-percentage="50">
+        <div className="skills__bar" id="skill-bubble-4" data-percentage="70">
           <div className="skills__bar-percentage"></div>
-          <span>Web Components</span>
+          <span>🏗️</span>
+          <span>Handling Infrastructure</span>
         </div>
-        <div className="skills__bar" id="skill-bubble-5" data-percentage="75">
+        <div className="skills__bar" id="skill-bubble-5" data-percentage="15">
           <div className="skills__bar-percentage"></div>
-          <span>SCSS</span>
-        </div>
-        <div className="skills__bar" id="skill-bubble-6" data-percentage="75">
-          <div className="skills__bar-percentage"></div>
-          <span>HTML5</span>
+          <span>🚗</span>
+          <span>Parallel Parking</span>
         </div>
       </div>
     </div>
