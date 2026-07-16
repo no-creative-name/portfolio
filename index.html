@@ -1,0 +1,721 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Kai Wissler - Senior Product Engineer working from unclear problems to useful products.">
+  <title>Kai Wissler - Senior Product Engineer</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@300;600&amp;family=Newsreader:opsz,wght@6..72,300;6..72,600&amp;display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --canvas: #f2f3f0;
+      --surface: #ffffff;
+      --ink: #18201d;
+      --muted: #68716d;
+      --line: #ccd1cd;
+      --green: #157257;
+      --coral: #f06a4f;
+      --blue: #4164c8;
+      --max: 1320px;
+    }
+
+    * { box-sizing: border-box; }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      margin: 0;
+      color: var(--ink);
+      background: var(--canvas);
+      font-family: "Manrope", Arial, Helvetica, sans-serif;
+      font-weight: 300;
+      letter-spacing: 0;
+    }
+
+    a { color: inherit; }
+
+    .wrap {
+      width: min(var(--max), calc(100% - 64px));
+      margin-inline: auto;
+    }
+
+    .site-header {
+      min-height: 88px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 32px;
+      border-bottom: 1px solid var(--line);
+    }
+
+    .name {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      font-size: 19px;
+      font-weight: 600;
+      text-decoration: none;
+    }
+
+    .job-title {
+      padding-left: 14px;
+      border-left: 1px solid var(--line);
+      color: var(--muted);
+      font-size: 14px;
+      font-weight: 300;
+    }
+
+    .site-nav {
+      display: flex;
+      align-items: center;
+      gap: 30px;
+    }
+
+    .site-nav a {
+      color: var(--muted);
+      font-size: 14px;
+      text-decoration: none;
+    }
+
+    .site-nav a:hover { color: var(--green); }
+
+    a.cta-button {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+      min-height: 44px;
+      padding: 10px 16px;
+      border: 1px solid var(--line);
+      border-radius: 4px;
+      color: var(--ink);
+      background: var(--surface);
+      font-size: 13px;
+      font-weight: 600;
+      text-decoration: none;
+      transition: color .2s ease, background-color .2s ease, border-color .2s ease;
+    }
+
+    a.cta-button:hover {
+      color: var(--surface);
+      border-color: var(--green);
+      background: var(--green);
+    }
+
+    .cta-button svg {
+      width: 17px;
+      height: 17px;
+      flex: 0 0 auto;
+      fill: none;
+      stroke: currentColor;
+      stroke-width: 2;
+      stroke-linecap: round;
+      stroke-linejoin: round;
+    }
+
+    .hero {
+      position: relative;
+      isolation: isolate;
+      overflow: hidden;
+      min-height: 690px;
+      display: flex;
+      align-items: center;
+      padding-block: 80px;
+    }
+
+    .hero-content {
+      position: relative;
+      z-index: 2;
+    }
+
+    h1 {
+      max-width: 900px;
+      margin: 0;
+      font-family: "Newsreader", Georgia, "Times New Roman", serif;
+      font-size: clamp(42px, 4.7vw, 70px);
+      font-weight: 300;
+      line-height: 1.08;
+    }
+
+    .marked {
+      --mark-color: var(--green);
+      --mark-wash: rgb(21 114 87 / .64);
+      --mark-grain-x: 18%;
+      --underline-delay: .2s;
+      position: relative;
+      display: inline-block;
+      font-weight: 600;
+      text-decoration: none;
+      white-space: nowrap;
+      cursor: default;
+    }
+
+    .marked::after {
+      content: "";
+      position: absolute;
+      right: 0;
+      bottom: 0;
+      left: 0;
+      height: 6px;
+      background-image:
+        linear-gradient(var(--mark-wash), var(--mark-wash)),
+        url("dot-grain.jpg"),
+        linear-gradient(var(--mark-color), var(--mark-color));
+      background-position:
+        left bottom,
+        var(--mark-grain-x) bottom,
+        left bottom;
+      background-size:
+        100% 6px,
+        400px 6px,
+        100% 6px;
+      background-repeat: no-repeat, repeat-x, no-repeat;
+      background-blend-mode: normal, luminosity, normal;
+      transform: scaleX(0);
+      transform-origin: left center;
+      animation: underline-in 1.15s var(--underline-delay) both cubic-bezier(.2, .8, .2, 1);
+    }
+
+    .mark-green {
+      --mark-color: var(--green);
+      --mark-wash: rgb(21 114 87 / .64);
+      --mark-grain-x: 18%;
+    }
+
+    .mark-coral {
+      --mark-color: var(--coral);
+      --mark-wash: rgb(240 106 79 / .64);
+      --mark-grain-x: 78%;
+      --underline-delay: 1.3s;
+    }
+
+    .mark-blue {
+      --mark-color: var(--blue);
+      --mark-wash: rgb(65 100 200 / .64);
+      --mark-grain-x: 46%;
+      --underline-delay: 2.4s;
+    }
+
+    .hero-line {
+      display: block;
+    }
+
+    .hero-line + .hero-line { margin-top: .2em; }
+
+    .hero-scene {
+      position: absolute;
+      z-index: 0;
+      top: 50%;
+      right: 1%;
+      width: min(35vw, 420px);
+      aspect-ratio: 1;
+      transform: translateY(-50%);
+      pointer-events: none;
+      opacity: .78;
+    }
+
+    .balance-dot {
+      --enter-delay: .2s;
+      --balance-delay: 1.2s;
+      position: absolute;
+      width: clamp(34px, 4vw, 52px);
+      aspect-ratio: 1;
+      border-radius: 50%;
+      overflow: hidden;
+      background-color: var(--dot-color);
+      transform: translateY(0) scale(.94);
+      transform-origin: 50% 50%;
+      animation:
+        dot-in .9s var(--enter-delay) both cubic-bezier(.2, .8, .2, 1),
+        balance 10s var(--balance-delay) ease-in-out infinite;
+      scale: 1;
+      transition: scale .38s cubic-bezier(.2, .8, .2, 1);
+    }
+
+    .balance-dot::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      border-radius: inherit;
+      pointer-events: none;
+    }
+
+    .balance-dot::before {
+      background-image: url("dot-grain.jpg");
+      background-position: var(--grain-position);
+      background-size: 400px auto;
+      mix-blend-mode: luminosity;
+      opacity: .36;
+    }
+
+    .dot-green { --dot-color: var(--green); --grain-position: 18% 42%; top: 10%; left: calc(50% - clamp(17px, 2vw, 26px)); }
+    .dot-coral { --dot-color: var(--coral); --grain-position: 78% 58%; --enter-delay: 1.3s; --balance-delay: 2.3s; right: 10%; bottom: 14%; }
+    .dot-blue { --dot-color: var(--blue); --grain-position: 46% 84%; --enter-delay: 2.4s; --balance-delay: 3.4s; left: 10%; bottom: 14%; }
+
+    .hero:has(.mark-green:hover) .dot-green,
+    .hero:has(.mark-coral:hover) .dot-coral,
+    .hero:has(.mark-blue:hover) .dot-blue {
+      scale: 1.85;
+    }
+
+    @keyframes balance {
+      0%, 100% { transform: translateY(0) scale(.94); }
+      50% { transform: translateY(10px) scale(1.08); }
+    }
+
+    @keyframes underline-in {
+      to { transform: scaleX(1); }
+    }
+
+    @keyframes dot-in {
+      from { opacity: 0; clip-path: circle(0% at 50% 50%); }
+      to { opacity: 1; clip-path: circle(50% at 50% 50%); }
+    }
+
+    .bio {
+      position: relative;
+      overflow: visible;
+      border-top: 1px solid var(--line);
+      border-bottom: 1px solid var(--line);
+      background: var(--surface);
+    }
+
+    .bio-inner {
+      position: relative;
+      min-height: 470px;
+      display: grid;
+      grid-template-columns: minmax(230px, 320px) minmax(0, 780px);
+      gap: clamp(40px, 8vw, 120px);
+      align-items: center;
+      padding-block: 0;
+    }
+
+    .bio-portrait {
+      position: relative;
+      align-self: stretch;
+      min-height: 470px;
+    }
+
+    .bio-photo {
+      display: block;
+      position: absolute;
+      left: 50%;
+      bottom: -26%;
+      width: 240%;
+      max-width: none;
+      height: auto;
+      transform: translateX(-50%);
+      filter: grayscale(1) contrast(1.06);
+      z-index: 2;
+    }
+
+    .portrait-echo {
+      --grain-position: 50% 50%;
+      position: absolute;
+      left: 50%;
+      bottom: -26%;
+      width: 240%;
+      max-width: none;
+      height: auto;
+      pointer-events: none;
+      opacity: 0;
+      transform: translate(-50%, 0);
+      transition:
+        opacity 1s cubic-bezier(.2, .8, .2, 1),
+        transform 1s cubic-bezier(.2, .8, .2, 1);
+      mix-blend-mode: multiply;
+      z-index: 1;
+    }
+
+    .portrait-echo::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      z-index: 1;
+      pointer-events: none;
+      background-image: url("dot-grain.jpg");
+      background-position: var(--grain-position);
+      background-size: 400px auto;
+      mix-blend-mode: luminosity;
+      opacity: .75;
+      -webkit-mask: url("kai-portrait.png") center / 100% 100% no-repeat;
+      mask: url("kai-portrait.png") center / 100% 100% no-repeat;
+    }
+
+    .echo-green { --grain-position: 18% 42%; }
+    .echo-coral { --grain-position: 78% 58%; }
+    .echo-blue { --grain-position: 46% 84%; }
+
+    .echo-green .echo-image {
+      filter: brightness(0) saturate(100%) invert(36%) sepia(21%) saturate(1535%) hue-rotate(113deg) brightness(91%) contrast(94%);
+    }
+
+    .echo-coral .echo-image {
+      filter: brightness(0) saturate(100%) invert(55%) sepia(68%) saturate(1430%) hue-rotate(328deg) brightness(98%) contrast(91%);
+    }
+
+    .echo-blue .echo-image {
+      filter: brightness(0) saturate(100%) invert(41%) sepia(68%) saturate(1159%) hue-rotate(196deg) brightness(88%) contrast(87%);
+    }
+
+    .echo-image { display: block; width: 100%; height: auto; }
+
+    .bio-portrait.is-in-view .portrait-echo { opacity: .48; }
+    .bio-portrait.is-in-view .echo-green { transform: translate(-56%, -1%); }
+    .bio-portrait.is-in-view .echo-coral { transform: translate(-44%, 2%); }
+    .bio-portrait.is-in-view .echo-blue { transform: translate(-50%, -5%); }
+
+    .bio-portrait.is-in-view .echo-green .echo-image,
+    .bio-portrait.is-in-view .echo-green::before { animation: drift-green 22s 1s ease-in-out infinite alternate; }
+    .bio-portrait.is-in-view .echo-coral .echo-image,
+    .bio-portrait.is-in-view .echo-coral::before { animation: drift-coral 26s 1s ease-in-out infinite alternate; }
+    .bio-portrait.is-in-view .echo-blue .echo-image,
+    .bio-portrait.is-in-view .echo-blue::before { animation: drift-blue 30s 1s ease-in-out infinite alternate; }
+
+    @keyframes drift-green { to { transform: translate(3%, 3%); } }
+    @keyframes drift-coral { to { transform: translate(-5%, -4%); } }
+    @keyframes drift-blue { to { transform: translate(5%, 6%); } }
+
+    .bio-copy {
+      max-width: 880px;
+      margin: 0;
+      font-family: "Newsreader", Georgia, "Times New Roman", serif;
+      font-size: clamp(25px, 2.8vw, 38px);
+      font-weight: 300;
+      line-height: 1.25;
+    }
+
+    .work {
+      padding-block: 130px 150px;
+    }
+
+    .section-heading {
+      margin-bottom: 65px;
+    }
+
+    .section-heading h2 {
+      margin: 0;
+      font-family: "Newsreader", Georgia, "Times New Roman", serif;
+      font-size: clamp(52px, 6vw, 82px);
+      font-weight: 600;
+      line-height: 1;
+    }
+
+    .projects { border-top: 1px solid var(--ink); }
+
+    .project {
+      border-bottom: 1px solid var(--line);
+    }
+
+    .project summary {
+      display: grid;
+      grid-template-columns: minmax(210px, .75fr) minmax(300px, 1.4fr) auto 24px;
+      gap: clamp(24px, 4vw, 64px);
+      align-items: center;
+      min-height: 126px;
+      padding: 28px max(32px, calc((100% - var(--max)) / 2));
+      cursor: pointer;
+      list-style: none;
+      transition: background-color .25s ease;
+    }
+
+    .project summary::-webkit-details-marker { display: none; }
+
+    .project summary:hover { background: rgb(255 255 255 / .48); }
+
+    .project summary:focus-visible {
+      outline: 2px solid var(--blue);
+      outline-offset: -2px;
+    }
+
+    .project h3 {
+      margin: 0;
+      font-family: "Newsreader", Georgia, "Times New Roman", serif;
+      font-size: clamp(29px, 3vw, 43px);
+      font-weight: 600;
+      line-height: 1;
+    }
+
+    .project-summary {
+      max-width: 620px;
+      margin: 0;
+      color: var(--muted);
+      font-size: 15px;
+      line-height: 1.55;
+    }
+
+    .project-chevron {
+      width: 22px;
+      height: 22px;
+      fill: none;
+      stroke: currentColor;
+      stroke-width: 1.6;
+      stroke-linecap: round;
+      stroke-linejoin: round;
+      transition: transform .3s cubic-bezier(.2, .8, .2, 1);
+    }
+
+    .project[open] summary { background: var(--surface); }
+    .project[open] .project-chevron { transform: rotate(180deg); }
+
+    .project-detail {
+      padding: 0 max(32px, calc((100% - var(--max)) / 2)) 44px;
+      background: var(--surface);
+      animation: project-detail-in .4s both cubic-bezier(.2, .8, .2, 1);
+    }
+
+    .story {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: clamp(28px, 5vw, 76px);
+      padding-top: 34px;
+      border-top: 1px solid var(--line);
+    }
+
+    .story div { min-width: 0; }
+
+    .story b {
+      display: block;
+      margin-bottom: 9px;
+      color: var(--green);
+      font-size: 11px;
+      text-transform: uppercase;
+    }
+
+    .story span {
+      color: var(--muted);
+      font-size: 14px;
+      line-height: 1.6;
+    }
+
+    .project-tag {
+      color: var(--muted);
+      font-size: 11px;
+      line-height: 1.45;
+      text-align: right;
+      text-transform: uppercase;
+    }
+
+    @keyframes project-detail-in {
+      from { opacity: 0; transform: translateY(-8px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    footer {
+      display: flex;
+      max-width: none;
+      min-height: 170px;
+      margin: 0;
+      padding-inline: max(32px, calc((100% - var(--max)) / 2));
+      align-items: center;
+      justify-content: space-between;
+      gap: 40px;
+      border-top: 1px solid #39413e;
+      color: var(--surface);
+      background: var(--ink);
+    }
+
+    footer.wrap {
+      width: 100%;
+      margin-inline: 0;
+    }
+
+    footer strong {
+      font-family: "Newsreader", Georgia, "Times New Roman", serif;
+      font-size: clamp(27px, 3vw, 42px);
+      font-weight: 300;
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      html { scroll-behavior: auto; }
+      *, *::before, *::after {
+        animation-duration: .01ms !important;
+        animation-delay: 0ms !important;
+        transition-duration: .01ms !important;
+      }
+
+      .portrait-echo { transition: none !important; }
+      .echo-image { animation: none !important; }
+      .bio-portrait.is-in-view .portrait-echo { opacity: .4; }
+      .bio-portrait.is-in-view .echo-green { transform: translate(-56%, -1%); }
+      .bio-portrait.is-in-view .echo-coral { transform: translate(-44%, 2%); }
+      .bio-portrait.is-in-view .echo-blue { transform: translate(-50%, -5%); }
+    }
+
+    @media (max-width: 900px) {
+      .hero { min-height: auto; padding-block: 90px 80px; }
+      .hero-scene { right: -12%; width: 52vw; opacity: .5; }
+      .project summary { grid-template-columns: minmax(180px, .8fr) 1.4fr auto 24px; }
+    }
+
+    @media (max-width: 680px) {
+      .wrap { width: min(100% - 36px, var(--max)); }
+      .site-header { min-height: 76px; }
+      .name { align-items: flex-start; flex-direction: column; gap: 3px; }
+      .job-title { padding-left: 0; border-left: 0; font-size: 11px; }
+      .site-nav a:not(.cta-button) { display: none; }
+      .hero { padding-block: 70px 65px; }
+      .hero-scene { right: 0; width: 64vw; opacity: .28; }
+      h1 { font-size: clamp(40px, 11vw, 52px); }
+      .bio-inner { min-height: 0; grid-template-columns: 1fr; gap: 22px; padding-block: 0 48px; }
+      .bio-portrait { min-height: 390px; }
+      .bio-photo,
+      .portrait-echo { bottom: -30%; width: min(190%, 720px); }
+      .work { padding-block: 90px 110px; }
+      .section-heading { margin-bottom: 44px; }
+      .section-heading h2 { font-size: 52px; }
+      .project summary {
+        grid-template-columns: 1fr 22px;
+        gap: 10px 18px;
+        min-height: 0;
+        padding: 28px 18px;
+      }
+      .project h3 { font-size: 34px; }
+      .project-summary { grid-column: 1; font-size: 13px; }
+      .project-tag { grid-column: 1; grid-row: 1; margin-bottom: 38px; text-align: left; }
+      .project-chevron { grid-column: 2; grid-row: 1 / span 3; align-self: center; }
+      .project-detail { padding: 0 18px 34px; }
+      .story { grid-template-columns: 1fr; gap: 22px; padding-top: 28px; }
+      footer { min-height: 200px; flex-direction: column; align-items: flex-start; justify-content: center; }
+    }
+  </style>
+</head>
+<body>
+  <header class="site-header wrap" id="top">
+    <a class="name" href="#top"><span>Kai Wissler</span><span class="job-title">Senior Product Engineer</span></a>
+    <nav class="site-nav" aria-label="Main navigation">
+      <a class="cta-button" href="mailto:hello@example.com">
+        <svg viewBox="0 0 24 24" aria-hidden="true"><rect width="20" height="16" x="2" y="4" rx="2"></rect><path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"></path></svg>
+        <span>Reach out to me</span>
+      </a>
+    </nav>
+  </header>
+
+  <main>
+    <section class="hero wrap">
+      <div class="hero-content">
+        <h1>
+          <span class="hero-line"><span class="marked mark-green">Close enough</span> to understand the problem.</span>
+          <span class="hero-line"><span class="marked mark-coral">Technical enough</span> to build the response.</span>
+          <span class="hero-line"><span class="marked mark-blue">Pragmatic enough</span> to know how much is enough.</span>
+        </h1>
+      </div>
+
+      <div class="hero-scene" aria-hidden="true">
+        <span class="balance-dot dot-green"></span>
+        <span class="balance-dot dot-coral"></span>
+        <span class="balance-dot dot-blue"></span>
+      </div>
+
+    </section>
+
+    <section class="bio">
+      <div class="bio-inner wrap">
+        <div class="bio-portrait">
+          <span class="portrait-echo echo-green" aria-hidden="true"><img class="echo-image" src="kai-portrait.png" alt=""></span>
+          <span class="portrait-echo echo-coral" aria-hidden="true"><img class="echo-image" src="kai-portrait.png" alt=""></span>
+          <span class="portrait-echo echo-blue" aria-hidden="true"><img class="echo-image" src="kai-portrait.png" alt=""></span>
+          <img class="bio-photo" src="kai-portrait.png" alt="Portrait of Kai Wissler">
+        </div>
+        <p class="bio-copy">I'm Kai, a software engineer with a full-stack background. Over the years, my work has increasingly moved beyond implementation into understanding product problems, shaping solutions, and taking them through delivery.</p>
+      </div>
+    </section>
+
+    <section class="work" id="work">
+      <header class="section-heading wrap">
+        <h2>Selected work</h2>
+      </header>
+
+      <div class="projects">
+        <details class="project">
+          <summary>
+            <h3>PR Map</h3>
+            <p class="project-summary">A visual way to understand pull requests before diving into code.</p>
+            <span class="project-tag">Developer tooling</span>
+            <svg class="project-chevron" viewBox="0 0 24 24" aria-hidden="true"><path d="m6 9 6 6 6-6"></path></svg>
+          </summary>
+          <div class="project-detail">
+            <div class="story">
+              <div><b>Came with</b><span>Reviews were slow and context was scattered.</span></div>
+              <div><b>We built</b><span>A visual map connecting code, intent, and risk.</span></div>
+              <div><b>It changed</b><span>Faster orientation and more focused discussion.</span></div>
+            </div>
+          </div>
+        </details>
+
+        <details class="project">
+          <summary>
+            <h3>Voice to Action</h3>
+            <p class="project-summary">Turning spoken conversations into clear, assigned next steps.</p>
+            <span class="project-tag">AI workflow</span>
+            <svg class="project-chevron" viewBox="0 0 24 24" aria-hidden="true"><path d="m6 9 6 6 6-6"></path></svg>
+          </summary>
+          <div class="project-detail">
+            <div class="story">
+              <div><b>Came with</b><span>Useful conversations disappeared into notes.</span></div>
+              <div><b>We built</b><span>A workflow turning speech into assigned actions.</span></div>
+              <div><b>It changed</b><span>Less admin and clearer follow-through.</span></div>
+            </div>
+          </div>
+        </details>
+
+        <details class="project">
+          <summary>
+            <h3>Ops Triage</h3>
+            <p class="project-summary">A lightweight system for deciding what actually needs attention.</p>
+            <span class="project-tag">Internal product</span>
+            <svg class="project-chevron" viewBox="0 0 24 24" aria-hidden="true"><path d="m6 9 6 6 6-6"></path></svg>
+          </summary>
+          <div class="project-detail">
+            <div class="story">
+              <div><b>Came with</b><span>Every urgent request looked equally important.</span></div>
+              <div><b>We built</b><span>A shared signal model and lightweight queue.</span></div>
+              <div><b>It changed</b><span>The team could prioritize without another meeting.</span></div>
+            </div>
+          </div>
+        </details>
+      </div>
+    </section>
+
+  </main>
+
+  <footer class="wrap">
+    <strong>Wanna solve some problems?</strong>
+    <a class="cta-button" href="mailto:hello@example.com">
+      <svg viewBox="0 0 24 24" aria-hidden="true"><rect width="20" height="16" x="2" y="4" rx="2"></rect><path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"></path></svg>
+      <span>Reach out to me</span>
+    </a>
+  </footer>
+
+  <script>
+    const portrait = document.querySelector(".bio-portrait");
+
+    if (portrait) {
+      let portraitTicking = false;
+
+      const updatePortraitState = () => {
+        const bounds = portrait.getBoundingClientRect();
+        const focusLine = window.innerHeight * 0.52;
+        const stillVisibleAbove = bounds.bottom >= window.innerHeight * 0.2;
+        const isFocused = bounds.top <= focusLine && stillVisibleAbove;
+
+        portrait.classList.toggle("is-in-view", isFocused);
+        portraitTicking = false;
+      };
+
+      const requestPortraitUpdate = () => {
+        if (!portraitTicking) {
+          portraitTicking = true;
+          window.requestAnimationFrame(updatePortraitState);
+        }
+      };
+
+      window.addEventListener("scroll", requestPortraitUpdate, { passive: true });
+      window.addEventListener("resize", requestPortraitUpdate);
+      updatePortraitState();
+    }
+  </script>
+</body>
+</html>
