@@ -27,6 +27,7 @@
 
     body {
       margin: 0;
+      overflow-x: clip;
       color: var(--ink);
       background: var(--canvas);
       font-family: "Manrope", Arial, Helvetica, sans-serif;
@@ -410,15 +411,23 @@
     }
 
     .project summary {
-      display: grid;
-      grid-template-columns: minmax(210px, .75fr) minmax(300px, 1.4fr) auto 24px;
-      gap: clamp(24px, 4vw, 64px);
+      position: relative;
+      isolation: isolate;
+      overflow: hidden;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 18px clamp(24px, 4vw, 64px);
       align-items: center;
       min-height: 126px;
-      padding: 28px max(32px, calc((100% - var(--max)) / 2));
+      padding: 32px max(32px, calc((100% - var(--max)) / 2));
       cursor: pointer;
       list-style: none;
       transition: background-color .25s ease;
+    }
+
+    .project summary > :not(.project-icon) {
+      position: relative;
+      z-index: 1;
     }
 
     .project summary::-webkit-details-marker { display: none; }
@@ -431,6 +440,7 @@
     }
 
     .project h3 {
+      flex: 0 0 100%;
       margin: 0;
       font-family: "Newsreader", Georgia, "Times New Roman", serif;
       font-size: clamp(29px, 3vw, 43px);
@@ -439,6 +449,7 @@
     }
 
     .project-summary {
+      flex: 1 1 440px;
       max-width: 620px;
       margin: 0;
       color: var(--muted);
@@ -447,6 +458,8 @@
     }
 
     .project-chevron {
+      flex: 0 0 22px;
+      margin-left: auto;
       width: 22px;
       height: 22px;
       fill: none;
@@ -457,18 +470,46 @@
       transition: transform .3s cubic-bezier(.2, .8, .2, 1);
     }
 
+    .project-icon {
+      position: absolute;
+      z-index: 0;
+      top: 50%;
+      right: max(82px, calc((100% - var(--max)) / 2 + 82px));
+      width: 156px;
+      aspect-ratio: 1;
+      color: var(--muted);
+      opacity: .1;
+      pointer-events: none;
+      transform: translateY(-50%);
+      transition: color .3s ease;
+    }
+
+    .project-icon svg {
+      display: block;
+      width: 100%;
+      height: 100%;
+      fill: none;
+      stroke: currentColor;
+      stroke-width: 1;
+      stroke-linecap: round;
+      stroke-linejoin: round;
+    }
+
+    .project[open]:not(.is-closing) .project-icon { color: var(--green); }
+    .project:nth-child(3n + 2)[open]:not(.is-closing) .project-icon { color: var(--coral); }
+    .project:nth-child(3n)[open]:not(.is-closing) .project-icon { color: var(--blue); }
+
     .project[open] summary { background: var(--surface); }
     .project[open] .project-chevron { transform: rotate(180deg); }
 
     .project-detail {
       padding: 0 max(32px, calc((100% - var(--max)) / 2)) 44px;
       background: var(--surface);
-      animation: project-detail-in .4s both cubic-bezier(.2, .8, .2, 1);
     }
 
     .story {
       display: grid;
-      grid-template-columns: repeat(3, 1fr);
+      grid-template-columns: repeat(2, 1fr);
       gap: clamp(28px, 5vw, 76px);
       padding-top: 34px;
       border-top: 1px solid var(--line);
@@ -490,17 +531,16 @@
       line-height: 1.6;
     }
 
-    .project-tag {
-      color: var(--muted);
-      font-size: 11px;
-      line-height: 1.45;
-      text-align: right;
-      text-transform: uppercase;
-    }
+    .story-personal { grid-template-columns: 1fr; }
 
-    @keyframes project-detail-in {
-      from { opacity: 0; transform: translateY(-8px); }
-      to { opacity: 1; transform: translateY(0); }
+    .story-personal span { display: block; }
+
+    .projects-status {
+      margin: 0;
+      padding: 32px max(32px, calc((100% - var(--max)) / 2));
+      border-top: 1px solid var(--ink);
+      color: var(--muted);
+      font-size: 14px;
     }
 
     footer {
@@ -547,7 +587,6 @@
     @media (max-width: 900px) {
       .hero { min-height: auto; padding-block: 90px 80px; }
       .hero-scene { right: -12%; width: 52vw; opacity: .5; }
-      .project summary { grid-template-columns: minmax(180px, .8fr) 1.4fr auto 24px; }
     }
 
     @media (max-width: 680px) {
@@ -567,15 +606,15 @@
       .section-heading { margin-bottom: 44px; }
       .section-heading h2 { font-size: 52px; }
       .project summary {
-        grid-template-columns: 1fr 22px;
-        gap: 10px 18px;
+        gap: 10px;
         min-height: 0;
-        padding: 28px 18px;
+        padding: 28px 56px 28px 18px;
       }
       .project h3 { font-size: 34px; }
-      .project-summary { grid-column: 1; font-size: 13px; }
-      .project-tag { grid-column: 1; grid-row: 1; margin-bottom: 38px; text-align: left; }
-      .project-chevron { grid-column: 2; grid-row: 1 / span 3; align-self: center; }
+      .project-summary { flex-basis: 100%; font-size: 13px; }
+      .project-chevron { position: absolute; top: 50%; right: 18px; transform: translateY(-50%); }
+      .project[open] .project-chevron { transform: translateY(-50%) rotate(180deg); }
+      .project-icon { right: 42px; width: 116px; opacity: .085; }
       .project-detail { padding: 0 18px 34px; }
       .story { grid-template-columns: 1fr; gap: 22px; padding-top: 28px; }
       footer { min-height: 200px; flex-direction: column; align-items: flex-start; justify-content: center; }
@@ -628,55 +667,10 @@
         <h2>Selected work</h2>
       </header>
 
-      <div class="projects">
-        <details class="project">
-          <summary>
-            <h3>PR Map</h3>
-            <p class="project-summary">A visual way to understand pull requests before diving into code.</p>
-            <span class="project-tag">Developer tooling</span>
-            <svg class="project-chevron" viewBox="0 0 24 24" aria-hidden="true"><path d="m6 9 6 6 6-6"></path></svg>
-          </summary>
-          <div class="project-detail">
-            <div class="story">
-              <div><b>Came with</b><span>Reviews were slow and context was scattered.</span></div>
-              <div><b>We built</b><span>A visual map connecting code, intent, and risk.</span></div>
-              <div><b>It changed</b><span>Faster orientation and more focused discussion.</span></div>
-            </div>
-          </div>
-        </details>
-
-        <details class="project">
-          <summary>
-            <h3>Voice to Action</h3>
-            <p class="project-summary">Turning spoken conversations into clear, assigned next steps.</p>
-            <span class="project-tag">AI workflow</span>
-            <svg class="project-chevron" viewBox="0 0 24 24" aria-hidden="true"><path d="m6 9 6 6 6-6"></path></svg>
-          </summary>
-          <div class="project-detail">
-            <div class="story">
-              <div><b>Came with</b><span>Useful conversations disappeared into notes.</span></div>
-              <div><b>We built</b><span>A workflow turning speech into assigned actions.</span></div>
-              <div><b>It changed</b><span>Less admin and clearer follow-through.</span></div>
-            </div>
-          </div>
-        </details>
-
-        <details class="project">
-          <summary>
-            <h3>Ops Triage</h3>
-            <p class="project-summary">A lightweight system for deciding what actually needs attention.</p>
-            <span class="project-tag">Internal product</span>
-            <svg class="project-chevron" viewBox="0 0 24 24" aria-hidden="true"><path d="m6 9 6 6 6-6"></path></svg>
-          </summary>
-          <div class="project-detail">
-            <div class="story">
-              <div><b>Came with</b><span>Every urgent request looked equally important.</span></div>
-              <div><b>We built</b><span>A shared signal model and lightweight queue.</span></div>
-              <div><b>It changed</b><span>The team could prioritize without another meeting.</span></div>
-            </div>
-          </div>
-        </details>
+      <div class="projects" id="selected-projects" aria-live="polite">
+        <p class="projects-status">Loading selected work…</p>
       </div>
+
     </section>
 
   </main>
@@ -689,7 +683,120 @@
     </a>
   </footer>
 
+  <script src="projects-data.js"></script>
+  <script src="project-icons-data.js"></script>
   <script>
+    const escapeHtml = (value) => String(value)
+      .replaceAll("&", "&amp;")
+      .replaceAll("<", "&lt;")
+      .replaceAll(">", "&gt;")
+      .replaceAll('"', "&quot;")
+      .replaceAll("'", "&#039;");
+
+    const personalProjectTitles = new Set([
+      "Visual PR Briefs",
+      "Life Cockpit",
+      "In-person Workshop Tool"
+    ]);
+
+    const renderProjectStory = (project) => {
+      if (personalProjectTitles.has(project.title)) {
+        return `
+          <div class="story story-personal">
+            <div>
+              <b>What I built</b>
+              <span>${escapeHtml(`${project.whatWeBuilt} ${project.myContribution}`)}</span>
+            </div>
+          </div>`;
+      }
+
+      return `
+        <div class="story">
+          <div><b>What the team built</b><span>${escapeHtml(project.whatWeBuilt)}</span></div>
+          <div><b>My contribution</b><span>${escapeHtml(project.myContribution)}</span></div>
+        </div>`;
+    };
+
+    const renderProject = (project) => {
+      const iconMarkup = window.projectIconMarkup[project.title] || "";
+
+      return `
+        <details class="project">
+          <summary>
+            <span class="project-icon" aria-hidden="true">${iconMarkup}</span>
+            <h3>${escapeHtml(project.title)}</h3>
+            <p class="project-summary">${escapeHtml(project.problem)}</p>
+            <svg class="project-chevron" viewBox="0 0 24 24" aria-hidden="true"><path d="m6 9 6 6 6-6"></path></svg>
+          </summary>
+          <div class="project-detail">
+            ${renderProjectStory(project)}
+          </div>
+        </details>`;
+    };
+
+    const setupProjectAccordions = () => {
+      const reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+
+      document.querySelectorAll(".project").forEach((project) => {
+        const summary = project.querySelector("summary");
+        const detail = project.querySelector(".project-detail");
+
+        summary.addEventListener("click", (event) => {
+          event.preventDefault();
+          if (project.dataset.animating === "true") return;
+
+          const shouldOpen = !project.open;
+
+          if (reduceMotion || !project.animate) {
+            project.open = shouldOpen;
+            return;
+          }
+
+          const startHeight = project.offsetHeight;
+          project.dataset.animating = "true";
+
+          if (shouldOpen) {
+            project.open = true;
+          } else {
+            project.classList.add("is-closing");
+          }
+
+          const endHeight = shouldOpen ? project.offsetHeight : summary.offsetHeight;
+          project.style.overflow = "hidden";
+
+          const animation = project.animate(
+            { height: [`${startHeight}px`, `${endHeight}px`] },
+            { duration: 300, easing: "ease" }
+          );
+
+          animation.addEventListener("finish", () => {
+            project.open = shouldOpen;
+            project.classList.remove("is-closing");
+            project.style.removeProperty("overflow");
+            delete project.dataset.animating;
+          }, { once: true });
+        });
+      });
+    };
+
+    const loadProjects = () => {
+      const projectsElement = document.querySelector("#selected-projects");
+
+      try {
+        const content = window.projectContent;
+        if (!content) throw new Error("Project content is unavailable");
+
+        const allProjects = [...content.privateProjects, ...content.professionalWork];
+        projectsElement.innerHTML = allProjects.map(renderProject).join("");
+        setupProjectAccordions();
+      } catch (error) {
+        projectsElement.innerHTML = '<p class="projects-status">Selected work could not be loaded.</p>';
+        console.error(error);
+      }
+    };
+
+    loadProjects();
+
     const portrait = document.querySelector(".bio-portrait");
 
     if (portrait) {
