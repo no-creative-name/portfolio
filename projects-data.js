@@ -1,4 +1,14 @@
 window.projectContent = {
+"projectOrder": [
+"Low-latency Voice Mode for an AI Assistant",
+"In-person Workshop Tool",
+"Visual PR Briefs",
+"AI Workspace for Requirements Engineering",
+"White-label Lending Platform",
+"Life Cockpit",
+"Evolving an AI Prototype into a Mobile Product",
+"Resilient Cross-platform Investment App"
+],
 "privateProjects": [
 {
 "title": "Visual PR Briefs",

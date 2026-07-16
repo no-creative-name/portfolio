@@ -285,20 +285,21 @@
     }
 
     .bio-inner {
+      --portrait-offset: -180px;
       position: relative;
-      min-height: 470px;
+      min-height: calc(470px + var(--portrait-offset));
       display: grid;
       grid-template-columns: minmax(230px, 320px) minmax(0, 780px);
       gap: clamp(40px, 8vw, 120px);
       align-items: center;
-      padding-block: 0;
+      padding-block: 40px;
     }
 
     .bio-portrait {
       position: relative;
-      top: -180px;
+      top: var(--portrait-offset);
       align-self: stretch;
-      min-height: 470px;
+      min-height: calc(470px + var(--portrait-offset));
     }
 
     .bio-photo {
@@ -413,9 +414,6 @@
     }
 
     .project summary {
-      position: relative;
-      isolation: isolate;
-      overflow: hidden;
       display: flex;
       flex-wrap: wrap;
       gap: 18px clamp(24px, 4vw, 64px);
@@ -425,11 +423,6 @@
       cursor: pointer;
       list-style: none;
       transition: background-color .25s ease;
-    }
-
-    .project summary > :not(.project-icon) {
-      position: relative;
-      z-index: 1;
     }
 
     .project summary::-webkit-details-marker { display: none; }
@@ -471,35 +464,6 @@
       stroke-linejoin: round;
       transition: transform .3s cubic-bezier(.2, .8, .2, 1);
     }
-
-    .project-icon {
-      position: absolute;
-      z-index: 0;
-      top: 50%;
-      right: max(82px, calc((100% - var(--max)) / 2 + 82px));
-      width: 156px;
-      aspect-ratio: 1;
-      color: var(--muted);
-      opacity: .1;
-      pointer-events: none;
-      transform: translateY(-50%);
-      transition: color .3s ease;
-    }
-
-    .project-icon svg {
-      display: block;
-      width: 100%;
-      height: 100%;
-      fill: none;
-      stroke: currentColor;
-      stroke-width: 1;
-      stroke-linecap: round;
-      stroke-linejoin: round;
-    }
-
-    .project[open]:not(.is-closing) .project-icon { color: var(--green); }
-    .project:nth-child(3n + 2)[open]:not(.is-closing) .project-icon { color: var(--coral); }
-    .project:nth-child(3n)[open]:not(.is-closing) .project-icon { color: var(--blue); }
 
     .project[open] summary { background: var(--surface); }
     .project[open] .project-chevron { transform: rotate(180deg); }
@@ -642,7 +606,6 @@
       .project-summary { flex-basis: 100%; }
       .project-chevron { position: static; margin-left: auto; transform: none; }
       .project[open] .project-chevron { transform: rotate(180deg); }
-      .project-icon { display: none; }
       .project-detail { padding: 0 18px 34px; }
       .story { grid-template-columns: 1fr; gap: 22px; padding-top: 28px; }
       footer { min-height: 200px; flex-direction: column; align-items: flex-start; justify-content: center; gap: 20px; }
@@ -712,7 +675,6 @@
   </aside>
 
   <script src="projects-data.js"></script>
-  <script src="project-icons-data.js"></script>
   <script>
     const escapeHtml = (value) => String(value)
       .replaceAll("&", "&amp;")
@@ -746,12 +708,9 @@
     };
 
     const renderProject = (project) => {
-      const iconMarkup = window.projectIconMarkup[project.title] || "";
-
       return `
         <details class="project">
           <summary>
-            <span class="project-icon" aria-hidden="true">${iconMarkup}</span>
             <h3>${escapeHtml(project.title)}</h3>
             <p class="project-summary">${escapeHtml(project.problem)}</p>
             <svg class="project-chevron" viewBox="0 0 24 24" aria-hidden="true"><path d="m6 9 6 6 6-6"></path></svg>
@@ -814,7 +773,13 @@
         const content = window.projectContent;
         if (!content) throw new Error("Project content is unavailable");
 
-        const allProjects = [...content.privateProjects, ...content.professionalWork];
+        const projectsByTitle = new Map(
+          [...content.privateProjects, ...content.professionalWork]
+            .map((project) => [project.title, project])
+        );
+        const allProjects = content.projectOrder
+          .map((title) => projectsByTitle.get(title))
+          .filter(Boolean);
         projectsElement.innerHTML = allProjects.map(renderProject).join("");
         setupProjectAccordions();
       } catch (error) {
