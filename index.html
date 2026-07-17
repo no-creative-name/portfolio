@@ -166,8 +166,6 @@
 
     .marked {
       --mark-color: var(--green);
-      --mark-wash: rgb(21 114 87 / .64);
-      --mark-grain-x: 18%;
       --underline-delay: .2s;
       position: relative;
       display: inline-block;
@@ -184,28 +182,13 @@
       bottom: 0;
       left: 0;
       height: 6px;
-      background-image:
-        linear-gradient(var(--mark-wash), var(--mark-wash)),
-        url("dot-grain.jpg"),
-        linear-gradient(var(--mark-color), var(--mark-color));
-      background-position:
-        left bottom,
-        var(--mark-grain-x) bottom,
-        left bottom;
-      background-size:
-        100% 6px,
-        400px 6px,
-        100% 6px;
-      background-repeat: no-repeat, repeat-x, no-repeat;
-      background-blend-mode: normal, luminosity, normal;
+      background: var(--mark-color);
       transform: scaleX(0);
       transform-origin: left center;
     }
 
     .mark-green {
       --mark-color: var(--green);
-      --mark-wash: rgb(21 114 87 / .64);
-      --mark-grain-x: 18%;
     }
 
     .mark-green::before {
@@ -229,11 +212,10 @@
 
     .mark-coral {
       --mark-color: var(--coral);
-      --mark-wash: rgb(240 106 79 / .64);
-      --mark-grain-x: 78%;
     }
 
     .mark-coral::after {
+      background-color: transparent;
       background-image:
         linear-gradient(var(--coral), var(--coral)),
         linear-gradient(var(--coral), var(--coral)),
@@ -248,8 +230,6 @@
 
     .mark-blue {
       --mark-color: var(--blue);
-      --mark-wash: rgb(65 100 200 / .64);
-      --mark-grain-x: 46%;
     }
 
     .mark-blue::after {
@@ -338,7 +318,6 @@
     }
 
     .portrait-echo {
-      --grain-position: 50% 50%;
       position: absolute;
       left: 50%;
       top: 0;
@@ -354,25 +333,6 @@
       mix-blend-mode: multiply;
       z-index: 1;
     }
-
-    .portrait-echo::before {
-      content: "";
-      position: absolute;
-      inset: 0;
-      z-index: 1;
-      pointer-events: none;
-      background-image: url("dot-grain.jpg");
-      background-position: var(--grain-position);
-      background-size: 400px auto;
-      mix-blend-mode: luminosity;
-      opacity: .75;
-      -webkit-mask: url("kai-portrait.webp") center / 100% 100% no-repeat;
-      mask: url("kai-portrait.webp") center / 100% 100% no-repeat;
-    }
-
-    .echo-green { --grain-position: 18% 42%; }
-    .echo-coral { --grain-position: 78% 58%; }
-    .echo-blue { --grain-position: 46% 84%; }
 
     .echo-green .echo-image {
       filter: brightness(0) saturate(100%) invert(36%) sepia(21%) saturate(1535%) hue-rotate(113deg) brightness(91%) contrast(94%);
@@ -393,12 +353,9 @@
     .bio-portrait.is-in-view .echo-coral { transform: translate(-44%, 2%); }
     .bio-portrait.is-in-view .echo-blue { transform: translate(-50%, -5%); }
 
-    .bio-portrait.is-in-view .echo-green .echo-image,
-    .bio-portrait.is-in-view .echo-green::before { animation: drift-green 22s 1s ease-in-out infinite alternate; }
-    .bio-portrait.is-in-view .echo-coral .echo-image,
-    .bio-portrait.is-in-view .echo-coral::before { animation: drift-coral 26s 1s ease-in-out infinite alternate; }
-    .bio-portrait.is-in-view .echo-blue .echo-image,
-    .bio-portrait.is-in-view .echo-blue::before { animation: drift-blue 30s 1s ease-in-out infinite alternate; }
+    .bio-portrait.is-in-view .echo-green .echo-image { animation: drift-green 22s 1s ease-in-out infinite alternate; }
+    .bio-portrait.is-in-view .echo-coral .echo-image { animation: drift-coral 26s 1s ease-in-out infinite alternate; }
+    .bio-portrait.is-in-view .echo-blue .echo-image { animation: drift-blue 30s 1s ease-in-out infinite alternate; }
 
     @keyframes drift-green { to { transform: translate(3%, 3%); } }
     @keyframes drift-coral { to { transform: translate(-5%, -4%); } }
