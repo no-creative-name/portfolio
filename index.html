@@ -3,8 +3,8 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="description" content="Kai Wissler - Senior Product Engineer working from unclear problems to useful products.">
-  <title>Kai Wissler - Senior Product Engineer</title>
+  <meta name="description" content="Coming soon...">
+  <title>Kai Wissler</title>
   <link rel="icon" href="favicon.svg" type="image/svg+xml">
   <script>
     if (new URLSearchParams(window.location.search).has("preview")) {
@@ -70,6 +70,24 @@
       min-height: 100svh;
       padding-block: 72px;
       text-align: center;
+    }
+
+    .loading-dots {
+      display: inline-flex;
+      margin-left: .03em;
+    }
+
+    .loading-dots span {
+      display: inline-block;
+      animation: loading-dot 1.2s ease-in-out infinite;
+    }
+
+    .loading-dots span:nth-child(2) { animation-delay: .14s; }
+    .loading-dots span:nth-child(3) { animation-delay: .28s; }
+
+    @keyframes loading-dot {
+      0%, 60%, 100% { transform: translateY(0); }
+      30% { transform: translateY(-.16em); }
     }
 
     a { color: inherit; }
@@ -550,6 +568,7 @@
       }
 
       .portrait-echo { transition: none !important; }
+      .loading-dots span { animation: none !important; }
       .echo-image { animation: none !important; }
       .bio-portrait.is-in-view .portrait-echo { opacity: .4; }
       .bio-portrait.is-in-view .echo-green { transform: translate(-56%, -1%); }
@@ -596,7 +615,7 @@
 <body>
   <section class="coming-soon">
     <main class="coming-soon-hero wrap">
-      <h1>Coming soon…</h1>
+      <h1>Coming soon<span class="loading-dots" aria-hidden="true"><span>.</span><span>.</span><span>.</span></span></h1>
     </main>
   </section>
 
