@@ -2,6 +2,6 @@
   "$schema": "https://openapi.vercel.sh/vercel.json",
   "framework": null,
   "installCommand": "",
-  "buildCommand": "mkdir -p dist && cp index.html projects-data.js kai-portrait.webp dist/",
+  "buildCommand": "mkdir -p dist && cp index.html projects-data.js kai-portrait.webp favicon.svg dist/",
   "outputDirectory": "dist"
 }
