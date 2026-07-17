@@ -5,6 +5,11 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="description" content="Kai Wissler - Senior Product Engineer working from unclear problems to useful products.">
   <title>Kai Wissler - Senior Product Engineer</title>
+  <script>
+    if (new URLSearchParams(window.location.search).has("preview")) {
+      document.documentElement.classList.add("portfolio-preview");
+    }
+  </script>
   <style>
     @font-face {
       font-family: "Manrope";
@@ -47,6 +52,23 @@
       font-family: "Manrope", Arial, Helvetica, sans-serif;
       font-weight: 300;
       letter-spacing: 0;
+    }
+
+    .portfolio-preview .coming-soon { display: none; }
+
+    .coming-soon {
+      min-height: 100svh;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .coming-soon-hero {
+      flex: 1;
+      display: grid;
+      place-items: center;
+      min-height: 100svh;
+      padding-block: 72px;
+      text-align: center;
     }
 
     a { color: inherit; }
@@ -614,6 +636,13 @@
   </style>
 </head>
 <body>
+  <section class="coming-soon">
+    <main class="coming-soon-hero wrap">
+      <h1>Coming soon…</h1>
+    </main>
+  </section>
+
+  <template id="portfolio-template">
   <header class="site-header wrap" id="top">
     <div class="name"><span>Kai Wissler</span><span class="job-title">Senior Product Engineer</span></div>
     <a class="cta-button" href="mailto:hello@example.com">
@@ -673,6 +702,14 @@
       <span class="music-links">Listen on <a href="https://open.spotify.com/artist/0I3FMGuLG3TwOYZ8pFhlol" target="_blank" rel="noreferrer">Spotify</a> or <a href="https://music.apple.com/at/artist/marvin-kai/1829493927?l=en-GB" target="_blank" rel="noreferrer">Apple Music</a></span>
     </p>
   </aside>
+  </template>
+
+  <script>
+    if (document.documentElement.classList.contains("portfolio-preview")) {
+      const portfolioTemplate = document.querySelector("#portfolio-template");
+      portfolioTemplate.replaceWith(portfolioTemplate.content.cloneNode(true));
+    }
+  </script>
 
   <script src="projects-data.js"></script>
   <script>
@@ -768,6 +805,7 @@
 
     const loadProjects = () => {
       const projectsElement = document.querySelector("#selected-projects");
+      if (!projectsElement) return;
 
       try {
         const content = window.projectContent;
