@@ -31,7 +31,7 @@ window.projectContent = {
       duration: "2–3 months",
       summary: "An internal product that teams used long enough to commission a second development phase.",
       context: "Teams manually turned research and planning material into structured artifacts. Stakeholder interviews helped define how those inputs and outputs should connect in one workflow.",
-      build: "As sole developer, I built the React app, Python backend, authentication, file processing, transcription, and rich-text editing. Users could generate, refine, edit, and export artifacts.",
+      build: "As lead developer in a two-developer team, I worked across the React app, Python backend, authentication, file processing, transcription, and rich-text editing. Users could generate, refine, edit, and export artifacts.",
       outcome: "The product saw extended internal use, and feedback led the client to commission a follow-up. It is now being phased out as general-purpose AI platforms improve faster than its budget allows.",
       learning: "A standalone model interface is not a durable advantage. The stronger product would connect the tools teams already use and treat models as replaceable infrastructure.",
       link: null
