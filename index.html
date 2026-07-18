@@ -306,7 +306,7 @@
     }
 
     .bio-inner {
-      --portrait-offset: -180px;
+      --portrait-offset: -220px;
       position: relative;
       min-height: calc(470px + var(--portrait-offset));
       display: grid;
@@ -390,7 +390,7 @@
     }
 
     .work {
-      padding-block: 130px 150px;
+      padding-block: 130px 80px;
     }
 
     .section-heading {
@@ -405,99 +405,217 @@
       line-height: 1;
     }
 
-    .projects { border-top: 1px solid var(--ink); }
+    .featured-projects { border-top: 1px solid var(--ink); }
 
-    .project {
+    .featured-project {
       border-bottom: 1px solid var(--line);
+      background: var(--surface);
     }
 
-    .project summary {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 18px clamp(24px, 4vw, 64px);
+    .featured-project:nth-child(even) { background: transparent; }
+
+    .featured-project > summary {
+      position: relative;
+      display: grid;
+      grid-template-columns: minmax(0, 1fr) auto;
+      gap: 28px;
       align-items: center;
-      min-height: 126px;
-      padding: 32px max(32px, calc((100% - var(--max)) / 2));
+      padding: 56px max(32px, calc((100% - var(--max)) / 2));
       cursor: pointer;
       list-style: none;
       transition: background-color .25s ease;
     }
 
-    .project summary::-webkit-details-marker { display: none; }
+    .featured-project > summary::-webkit-details-marker { display: none; }
+    .featured-project > summary:hover { background: rgb(255 255 255 / .48); }
 
-    .project summary:hover { background: rgb(255 255 255 / .48); }
-
-    .project summary:focus-visible {
+    .featured-project > summary:focus-visible {
       outline: 2px solid var(--blue);
       outline-offset: -2px;
     }
 
-    .project h3 {
-      flex: 0 0 100%;
+    .featured-project[open] > summary { padding-bottom: 24px; }
+
+    .featured-project-heading { min-width: 0; }
+
+    .featured-project h3 {
+      max-width: 980px;
       margin: 0;
       font-family: "Newsreader", Georgia, "Times New Roman", serif;
-      font-size: clamp(29px, 3vw, 43px);
+      font-size: clamp(32px, 3.6vw, 50px);
       font-weight: 600;
-      line-height: 1;
+      line-height: 1.02;
     }
 
-    .project-summary {
-      flex: 1 1 440px;
-      max-width: 620px;
-      margin: 0;
+    .featured-summary {
+      max-width: 820px;
+      margin: 20px 0 0;
       color: var(--muted);
-      font-size: 14px;
-      line-height: 1.6;
+      font-family: "Newsreader", Georgia, "Times New Roman", serif;
+      font-size: clamp(22px, 2.2vw, 30px);
+      line-height: 1.35;
     }
 
-    .project-chevron {
-      flex: 0 0 22px;
-      margin-left: auto;
-      width: 22px;
-      height: 22px;
+    .featured-toggle {
+      display: grid;
+      place-items: center;
+      width: 46px;
+      height: 46px;
+      border: 1px solid var(--line);
+      border-radius: 50%;
+      color: var(--green);
+      background: var(--surface);
+      transition: color .2s ease, background-color .2s ease, border-color .2s ease;
+    }
+
+    .featured-toggle svg {
+      width: 20px;
+      height: 20px;
       fill: none;
       stroke: currentColor;
-      stroke-width: 1.6;
+      stroke-linecap: round;
+      stroke-width: 1.7;
+    }
+
+    .featured-toggle .toggle-vertical {
+      transition: opacity .2s ease, transform .2s ease;
+      transform-origin: center;
+    }
+
+    .featured-project[open] .featured-toggle {
+      color: var(--surface);
+      border-color: var(--green);
+      background: var(--green);
+    }
+
+    .featured-project[open] .toggle-vertical {
+      opacity: 0;
+      transform: rotate(90deg);
+    }
+
+    .featured-project-content {
+      padding: 0 max(32px, calc((100% - var(--max)) / 2)) 76px;
+    }
+
+    .project-meta {
+      display: grid;
+      grid-template-columns: .95fr .75fr 1.3fr;
+      margin-top: 0;
+      border-top: 1px solid var(--ink);
+      border-bottom: 1px solid var(--line);
+    }
+
+    .project-meta-item {
+      min-height: 104px;
+      display: grid;
+      grid-template-columns: 22px minmax(0, 1fr);
+      gap: 14px;
+      align-items: center;
+      padding: 20px;
+      border-right: 1px solid var(--line);
+    }
+
+    .project-meta-item:first-child { padding-left: 0; }
+    .project-meta-item:last-child { border-right: 0; }
+
+    .project-meta-icon {
+      width: 20px;
+      height: 20px;
+      color: var(--green);
+      fill: none;
+      stroke: currentColor;
       stroke-linecap: round;
       stroke-linejoin: round;
-      transition: transform .3s cubic-bezier(.2, .8, .2, 1);
+      stroke-width: 1.7;
     }
 
-    .project[open] summary { background: var(--surface); }
-    .project[open] .project-chevron { transform: rotate(180deg); }
-
-    .project-detail {
-      padding: 0 max(32px, calc((100% - var(--max)) / 2)) 44px;
-      background: var(--surface);
-    }
-
-    .story {
+    .project-meta-copy {
       display: grid;
-      grid-template-columns: repeat(2, 1fr);
-      gap: clamp(28px, 5vw, 76px);
-      padding-top: 34px;
-      border-top: 1px solid var(--line);
+      gap: 5px;
     }
 
-    .story div { min-width: 0; }
-
-    .story b {
-      display: block;
-      margin-bottom: 9px;
-      color: var(--green);
-      font-size: 11px;
+    .project-meta-label {
+      color: var(--muted);
+      font-size: 10px;
+      letter-spacing: .06em;
       text-transform: uppercase;
     }
 
-    .story span {
-      color: var(--muted);
-      font-size: 14px;
-      line-height: 1.6;
+    .project-meta-value {
+      font-size: 13px;
+      font-weight: 600;
+      line-height: 1.4;
     }
 
-    .story-personal { grid-template-columns: 1fr; }
+    .case-grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 38px clamp(42px, 7vw, 100px);
+      margin-top: 42px;
+    }
 
-    .story-personal span { display: block; }
+    .case-section {
+      padding-top: 17px;
+      border-top: 1px solid var(--line);
+    }
+
+    .case-section b {
+      display: block;
+      margin-bottom: 10px;
+      color: var(--green);
+      font-size: 11px;
+      letter-spacing: .04em;
+      text-transform: uppercase;
+    }
+
+    .case-section p {
+      margin: 0;
+      color: var(--muted);
+      font-size: 14px;
+      line-height: 1.7;
+    }
+
+    .featured-link {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      margin-top: 30px;
+      color: var(--green);
+      font-size: 13px;
+      font-weight: 600;
+      text-underline-offset: 4px;
+    }
+
+    .featured-link::after { content: "↗"; }
+
+    .more-work-invite {
+      margin-top: 130px;
+      padding-block: 72px;
+      border-top: 1px solid var(--ink);
+    }
+
+    .more-work-invite-inner {
+      display: grid;
+      grid-template-columns: minmax(0, .9fr) minmax(0, 1.1fr);
+      gap: clamp(40px, 8vw, 120px);
+      align-items: baseline;
+    }
+
+    .more-work-invite h2 {
+      margin: 0;
+      font-family: "Newsreader", Georgia, "Times New Roman", serif;
+      font-size: clamp(38px, 4vw, 54px);
+      line-height: 1;
+    }
+
+    .more-work-invite p {
+      max-width: 620px;
+      margin: 0;
+      color: var(--muted);
+      font-family: "Newsreader", Georgia, "Times New Roman", serif;
+      font-size: clamp(22px, 2.2vw, 30px);
+      line-height: 1.4;
+    }
 
     .projects-status {
       margin: 0;
@@ -583,6 +701,7 @@
       .bio-portrait { top: -70px; min-height: 390px; }
       .bio-photo,
       .portrait-echo { top: 0; width: min(126%, 504px); }
+      .project-meta { grid-template-columns: repeat(3, minmax(0, 1fr)); }
     }
 
     @media (max-width: 680px) {
@@ -593,20 +712,22 @@
       .job-title { padding-left: 0; border-left: 0; font-size: 11px; }
       .hero { padding-block: 70px 65px; }
       h1 { font-size: clamp(40px, 11vw, 52px); }
-      .work { padding-block: 90px 110px; }
+      .work { padding-block: 90px 64px; }
       .section-heading { margin-bottom: 44px; }
       .section-heading h2 { font-size: 52px; }
-      .project summary {
-        gap: 10px;
-        min-height: 0;
-        padding: 24px;
-      }
-      .project h3 { font-size: 34px; }
-      .project-summary { flex-basis: 100%; }
-      .project-chevron { position: static; margin-left: auto; transform: none; }
-      .project[open] .project-chevron { transform: rotate(180deg); }
-      .project-detail { padding: 0 18px 34px; }
-      .story { grid-template-columns: 1fr; gap: 22px; padding-top: 28px; }
+      .featured-project > summary { gap: 18px; padding: 42px 18px; }
+      .featured-project[open] > summary { padding-bottom: 18px; }
+      .featured-project h3 { font-size: 32px; }
+      .featured-summary { margin-top: 20px; font-size: 23px; }
+      .featured-toggle { width: 40px; height: 40px; }
+      .featured-project-content { padding: 0 18px 58px; }
+      .project-meta { grid-template-columns: 1fr; margin-top: 0; }
+      .project-meta-item,
+      .project-meta-item:first-child { min-height: 0; padding: 17px 0; border-right: 0; border-bottom: 1px solid var(--line); }
+      .project-meta-item:last-child { border-bottom: 0; }
+      .case-grid { grid-template-columns: 1fr; gap: 30px; margin-top: 40px; }
+      .more-work-invite { margin-top: 90px; padding-block: 54px; }
+      .more-work-invite-inner { grid-template-columns: 1fr; gap: 24px; }
       footer { min-height: 200px; flex-direction: column; align-items: flex-start; justify-content: center; gap: 20px; }
       .music-note > span { display: block; }
     }
@@ -654,13 +775,19 @@
 
     <section class="work" id="work">
       <header class="section-heading wrap">
-        <h2>Selected work</h2>
+        <h2>Featured work</h2>
       </header>
 
-      <div class="projects" id="selected-projects" aria-live="polite">
-        <p class="projects-status">Loading selected work…</p>
+      <div class="featured-projects" id="featured-projects" aria-live="polite">
+        <p class="projects-status">Loading featured work…</p>
       </div>
 
+      <section class="more-work-invite">
+        <div class="more-work-invite-inner wrap">
+          <h2>There’s more.</h2>
+          <p>These are a few of the things I’ve built. The rest is better shared in conversation.</p>
+        </div>
+      </section>
     </section>
 
   </main>
@@ -688,7 +815,7 @@
     }
   </script>
 
-  <script src="projects-data.js"></script>
+  <script src="projects-data.js?v=3"></script>
   <script>
     const escapeHtml = (value) => String(value)
       .replaceAll("&", "&amp;")
@@ -697,108 +824,55 @@
       .replaceAll('"', "&quot;")
       .replaceAll("'", "&#039;");
 
-    const personalProjectTitles = new Set([
-      "Visual PR Briefs",
-      "Life Cockpit",
-      "In-person Workshop Tool"
-    ]);
-
-    const renderProjectStory = (project) => {
-      if (personalProjectTitles.has(project.title)) {
-        return `
-          <div class="story story-personal">
-            <div>
-              <b>What I built</b>
-              <span>${escapeHtml(`${project.whatWeBuilt} ${project.myContribution}`)}</span>
-            </div>
-          </div>`;
-      }
-
+    const renderFeaturedProject = (project) => {
       return `
-        <div class="story">
-          <div><b>What the team built</b><span>${escapeHtml(project.whatWeBuilt)}</span></div>
-          <div><b>My contribution</b><span>${escapeHtml(project.myContribution)}</span></div>
-        </div>`;
-    };
-
-    const renderProject = (project) => {
-      return `
-        <details class="project">
+        <details class="featured-project">
           <summary>
-            <h3>${escapeHtml(project.title)}</h3>
-            <p class="project-summary">${escapeHtml(project.problem)}</p>
-            <svg class="project-chevron" viewBox="0 0 24 24" aria-hidden="true"><path d="m6 9 6 6 6-6"></path></svg>
+            <div class="featured-project-heading">
+              <h3>${escapeHtml(project.title)}</h3>
+              <p class="featured-summary">${escapeHtml(project.summary)}</p>
+            </div>
+            <span class="featured-toggle" aria-hidden="true">
+              <svg viewBox="0 0 24 24"><path d="M5 12h14"></path><path class="toggle-vertical" d="M12 5v14"></path></svg>
+            </span>
           </summary>
-          <div class="project-detail">
-            ${renderProjectStory(project)}
+          <div class="featured-project-content">
+            <div class="project-meta">
+              <div class="project-meta-item">
+                <svg class="project-meta-icon" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="8"></circle><path d="m8.5 12 2.2 2.2 4.8-4.8"></path></svg>
+                <span class="project-meta-copy"><span class="project-meta-label">Status</span><span class="project-meta-value">${escapeHtml(project.status)}</span></span>
+              </div>
+              <div class="project-meta-item">
+                <svg class="project-meta-icon" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="8"></circle><path d="M12 7.5V12l3 2"></path></svg>
+                <span class="project-meta-copy"><span class="project-meta-label">Duration</span><span class="project-meta-value">${escapeHtml(project.duration)}</span></span>
+              </div>
+              <div class="project-meta-item">
+                <svg class="project-meta-icon" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="8" r="3"></circle><path d="M6.5 19c.7-3.2 2.5-5 5.5-5s4.8 1.8 5.5 5"></path></svg>
+                <span class="project-meta-copy"><span class="project-meta-label">My role</span><span class="project-meta-value">${escapeHtml(project.role)}</span></span>
+              </div>
+            </div>
+            <div class="case-grid">
+              <section class="case-section"><b>Challenge</b><p>${escapeHtml(project.context)}</p></section>
+              <section class="case-section"><b>My contribution</b><p>${escapeHtml(project.build)}</p></section>
+              <section class="case-section"><b>Result</b><p>${escapeHtml(project.outcome)}</p></section>
+              <section class="case-section"><b>Takeaway</b><p>${escapeHtml(project.learning)}</p></section>
+            </div>
+            ${project.link ? `<a class="featured-link" href="${escapeHtml(project.link.url)}" target="_blank" rel="noreferrer">${escapeHtml(project.link.label)}</a>` : ""}
           </div>
         </details>`;
     };
 
-    const setupProjectAccordions = () => {
-      const reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
-
-      document.querySelectorAll(".project").forEach((project) => {
-        const summary = project.querySelector("summary");
-        const detail = project.querySelector(".project-detail");
-
-        summary.addEventListener("click", (event) => {
-          event.preventDefault();
-          if (project.dataset.animating === "true") return;
-
-          const shouldOpen = !project.open;
-
-          if (reduceMotion || !project.animate) {
-            project.open = shouldOpen;
-            return;
-          }
-
-          const startHeight = project.offsetHeight;
-          project.dataset.animating = "true";
-
-          if (shouldOpen) {
-            project.open = true;
-          } else {
-            project.classList.add("is-closing");
-          }
-
-          const endHeight = shouldOpen ? project.offsetHeight : summary.offsetHeight;
-          project.style.overflow = "hidden";
-
-          const animation = project.animate(
-            { height: [`${startHeight}px`, `${endHeight}px`] },
-            { duration: 300, easing: "ease" }
-          );
-
-          animation.addEventListener("finish", () => {
-            project.open = shouldOpen;
-            project.classList.remove("is-closing");
-            project.style.removeProperty("overflow");
-            delete project.dataset.animating;
-          }, { once: true });
-        });
-      });
-    };
-
     const loadProjects = () => {
-      const projectsElement = document.querySelector("#selected-projects");
-      if (!projectsElement) return;
+      const featuredElement = document.querySelector("#featured-projects");
+      if (!featuredElement) return;
 
       try {
         const content = window.projectContent;
         if (!content) throw new Error("Project content is unavailable");
 
-        const projectsByTitle = new Map(
-          [...content.privateProjects, ...content.professionalWork]
-            .map((project) => [project.title, project])
-        );
-        const allProjects = content.projectOrder
-          .map((title) => projectsByTitle.get(title))
-          .filter(Boolean);
-        projectsElement.innerHTML = allProjects.map(renderProject).join("");
-        setupProjectAccordions();
+        featuredElement.innerHTML = content.featuredProjects.map(renderFeaturedProject).join("");
       } catch (error) {
-        projectsElement.innerHTML = '<p class="projects-status">Selected work could not be loaded.</p>';
+        featuredElement.innerHTML = '<p class="projects-status">Featured work could not be loaded.</p>';
         console.error(error);
       }
     };
