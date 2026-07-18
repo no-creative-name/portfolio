@@ -2,7 +2,7 @@ window.projectContent = {
   featuredProjects: [
     {
       title: "I turned repeated lending builds into a configurable platform",
-      status: "Production · Multi-year use",
+      status: "Production, Multi-year use",
       role: "Primary Product Engineer",
       duration: "6 months",
       summary: "Used by a bank for several years, generating several thousand leads and becoming a foundation for later projects.",
@@ -14,7 +14,7 @@ window.projectContent = {
     },
     {
       title: "I added voice to a grounded AI assistant without sacrificing trust",
-      status: "Closed beta · Active measurement",
+      status: "Closed beta, Active measurement",
       role: "Lead Developer",
       duration: "1 month",
       summary: "A cross-platform beta for several hundred users, with grounded responses beginning in under ten seconds.",
@@ -26,7 +26,7 @@ window.projectContent = {
     },
     {
       title: "I built an AI workspace that turned research into editable artifacts",
-      status: "Internal product · Follow-up commissioned",
+      status: "Internal product, Follow-up commissioned",
       role: "Lead Developer",
       duration: "2–3 months",
       summary: "An internal product that teams used long enough to commission a second development phase.",
