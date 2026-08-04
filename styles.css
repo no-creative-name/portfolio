@@ -92,12 +92,6 @@
       transition: color .2s ease, background-color .2s ease, border-color .2s ease;
     }
 
-    a.cta-button:hover {
-      color: var(--surface);
-      border-color: var(--green);
-      background: var(--green);
-    }
-
     .cta-button svg {
       width: 17px;
       height: 17px;
@@ -379,8 +373,6 @@
     }
 
     .featured-project > summary::-webkit-details-marker { display: none; }
-    .featured-project > summary:hover { background: rgb(255 255 255 / .48); }
-
     .featured-project > summary:focus-visible {
       outline: 2px solid var(--blue);
       outline-offset: -2px;
@@ -633,12 +625,6 @@
       transition: color .2s ease, background-color .2s ease, border-color .2s ease;
     }
 
-    a.social-button:hover {
-      color: var(--ink);
-      border-color: var(--surface);
-      background: var(--surface);
-    }
-
     .social-button svg {
       width: 17px;
       height: 17px;
@@ -673,8 +659,6 @@
       text-decoration-thickness: 1px;
     }
 
-    .music-links a:hover { color: #8fcab8; }
-
     .legal-link {
       flex: 0 0 auto;
       color: rgb(255 255 255 / .7);
@@ -683,8 +667,6 @@
       text-underline-offset: 3px;
       text-decoration-thickness: 1px;
     }
-
-    .legal-link:hover { color: var(--surface); }
 
     .legal-page {
       min-height: 100svh;
@@ -753,6 +735,25 @@
       font-size: 13px;
       font-weight: 600;
       text-underline-offset: 3px;
+    }
+
+    @media (hover: hover) and (pointer: fine) {
+      a.cta-button:hover {
+        color: var(--surface);
+        border-color: var(--green);
+        background: var(--green);
+      }
+
+      .featured-project > summary:hover { background: rgb(21 114 87 / .07); }
+
+      a.social-button:hover {
+        color: var(--ink);
+        border-color: var(--surface);
+        background: var(--surface);
+      }
+
+      .music-links a:hover { color: #8fcab8; }
+      .legal-link:hover { color: var(--surface); }
     }
 
     @media (prefers-reduced-motion: reduce) {
